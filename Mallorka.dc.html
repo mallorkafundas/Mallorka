@@ -9,7 +9,7 @@
 <x-dc>
 <helmet>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Poppins:wght@600;700;800&amp;display=swap" rel="stylesheet">
   <style>
     body { margin: 0; font-family: 'Inter', sans-serif; }
     a { color: oklch(58% 0.17 25); text-decoration: none; }
@@ -19,6 +19,11 @@
     .mk-hero-copy { max-width: 640px; }
     .mk-hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
     .mk-hero-actions a { box-sizing: border-box; }
+    .mk-hero-inner { display: flex; align-items: center; gap: 60px; }
+    .mk-hero-logo { flex: 0 0 380px; }
+    .mk-hero-logo img { width: 100%; display: block; }
+    @media (max-width: 1100px) { .mk-hero-logo { flex: 0 0 260px; } }
+    @media (max-width: 700px) { .mk-hero-inner { flex-direction: column; gap: 0; } .mk-hero-title-row { display: flex; align-items: center; gap: 12px; } .mk-hero-logo { flex: 0 0 130px; flex-shrink: 0; } .mk-hero-copy { min-width: 0 !important; } .mk-hero-logo--side { display: none !important; } .mk-hero-logo--inline { display: block !important; } }
     .mk-catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 24px; }
     .mk-catalog-filters { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 28px; align-items: flex-start; }
     .mk-model-select { width: 100%; max-width: 320px; box-sizing: border-box; }
@@ -95,13 +100,23 @@
 
   <!-- HERO -->
   <section class="mk-hero" style="padding:80px 40px;max-width:1280px;margin:0 auto;">
-    <div class="mk-hero-copy">
+    <div class="mk-hero-inner">
+    <div class="mk-hero-copy" style="flex:1;min-width:260px;">
+      <div class="mk-hero-title-row">
       <h1 class="mk-hero-title" style="font-family:'Poppins',sans-serif;font-size:52px;font-weight:800;line-height:1.05;margin:0 0 20px;letter-spacing:-0.02em;">Tu foto.<br>Tu funda.<br><span style="color:oklch(58% 0.17 25);">Tu estilo.</span></h1>
+      <div class="mk-hero-logo mk-hero-logo--inline" style="display:none;">
+        <img src="./uploads/Logo-Png.png" alt="Mallorka">
+      </div>
+      </div>
       <p style="font-size:18px;line-height:1.6;color:oklch(45% 0.01 75);margin:0 0 32px;">Subí una foto, ajustala con zoom y rotación hasta que quede perfecta, y elegí el modelo exacto de tu celular. O buscá algo listo en el catálogo.</p>
       <div class="mk-hero-actions">
         <a href="#disenador" style="background:oklch(58% 0.17 25);color:#fff;padding:16px 28px;border-radius:10px;font-weight:600;font-size:16px;">Diseñá tu funda</a>
         <a href="#catalogo" style="background:#fff;color:oklch(22% 0.015 75);padding:16px 28px;border-radius:10px;font-weight:600;font-size:16px;border:1px solid oklch(85% 0.01 75);">Ver catálogo</a>
       </div>
+    </div>
+    <div class="mk-hero-logo mk-hero-logo--side">
+      <img src="./uploads/Logo-Png.png" alt="Mallorka">
+    </div>
     </div>
   </section>
 
@@ -124,7 +139,7 @@
             <span style="position:absolute;top:10px;left:10px;background:oklch(58% 0.17 25);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;z-index:1;">Destacado</span>
             <div style="{{ p.imgWrapStyle }}">
               <sc-if value="{{ p.hasImage }}">
-                <img src="{{ p.imagenUrl }}" alt="{{ p.nombre }}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onError="{{ p.onImageError }}" style="{{ p.imgStyle }}" />
+                <img src="{{ p.imagenUrl }}" alt="{{ p.nombre }}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onError="{{ p.onImageError }}" style="{{ p.imgStyle }}">
               </sc-if>
               <sc-if value="{{ p.showPlaceholderLabel }}">
                 <span style="font-family:monospace;font-size:11px;color:rgba(255,255,255,0.85);text-align:center;padding:0 12px;">foto: {{ p.nombre }}</span>
@@ -160,7 +175,7 @@
   <!-- CATALOGO -->
   <section id="catalogo" class="mk-section mk-catalog-section" style="padding:80px 40px;max-width:1280px;margin:0 auto;background:oklch(96% 0.012 75);border-radius:24px;">
     <h2 style="font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;margin:0 0 8px;">Catálogo</h2>
-    <p style="color:oklch(45% 0.01 75);margin:0 0 28px;font-size:16px;">Diseños listos para pedir. Se actualiza automáticamente desde nuestro Google Sheet.</p>
+    <p style="color:oklch(45% 0.01 75);margin:0 0 28px;font-size:16px;">Diseños listos para pedir.</p>
 
     <div class="mk-catalog-filters">
       <div style="display:flex;gap:8px;flex-wrap:wrap;flex:1;">
@@ -190,13 +205,13 @@
       <p style="color:oklch(45% 0.01 75);font-size:15px;">No hay diseños que coincidan con ese filtro.</p>
     </sc-if>
 
-    <sc-if value="{{ !loading && !loadError }}">
+    <sc-if value="{{ !loading &amp;&amp; !loadError }}">
     <div class="mk-catalog-grid">
       <sc-for list="{{ filteredProducts }}" as="p" hint-placeholder-count="8">
         <div style="background:#fff;border-radius:16px;overflow:hidden;border:1px solid oklch(90% 0.01 75);display:flex;flex-direction:column;">
           <div style="{{ p.imgWrapStyle }}">
             <sc-if value="{{ p.hasImage }}">
-              <img src="{{ p.imagenUrl }}" alt="{{ p.nombre }}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onError="{{ p.onImageError }}" style="{{ p.imgStyle }}" />
+              <img src="{{ p.imagenUrl }}" alt="{{ p.nombre }}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onError="{{ p.onImageError }}" style="{{ p.imgStyle }}">
             </sc-if>
             <sc-if value="{{ p.showPlaceholderLabel }}">
               <span style="font-family:monospace;font-size:11px;color:rgba(255,255,255,0.85);text-align:center;padding:0 12px;">foto: {{ p.nombre }}</span>
@@ -243,7 +258,7 @@
           <div style="font-weight:600;font-size:14px;margin-bottom:10px;">3. Tu foto</div>
           <label style="display:inline-block;cursor:pointer;background:oklch(22% 0.015 75);color:#fff;padding:12px 22px;border-radius:8px;font-weight:600;font-size:14px;">
             {{ uploadLabel }}
-            <input type="file" accept="image/*" onChange="{{ onFileChange }}" style="display:none;" />
+            <input type="file" accept="image/*" onChange="{{ onFileChange }}" style="display:none;">
           </label>
         </div>
 
@@ -251,11 +266,11 @@
           <div style="display:flex;flex-direction:column;gap:18px;max-width:280px;animation:mk-pop-in 0.3s ease;">
             <div>
               <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:500;color:oklch(45% 0.01 75);margin-bottom:6px;"><span>Zoom</span><span style="font-variant-numeric:tabular-nums;">{{ zoomLabel }}</span></div>
-              <input type="range" min="0.5" max="3" step="0.05" value="{{ zoom }}" onChange="{{ onZoomChange }}" style="width:100%;" />
+              <input type="range" min="0.5" max="3" step="0.05" value="{{ zoom }}" onChange="{{ onZoomChange }}" style="width:100%;">
             </div>
             <div>
               <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:500;color:oklch(45% 0.01 75);margin-bottom:6px;"><span>Rotación</span><span style="font-variant-numeric:tabular-nums;">{{ rotationLabel }}</span></div>
-              <input type="range" min="-180" max="180" step="1" value="{{ rotation }}" onChange="{{ onRotationChange }}" style="width:100%;" />
+              <input type="range" min="-180" max="180" step="1" value="{{ rotation }}" onChange="{{ onRotationChange }}" style="width:100%;">
             </div>
             <p style="font-size:12px;color:oklch(55% 0.01 75);margin:0;">Tip: arrastrá la foto dentro de la funda para reacomodarla.</p>
             <button onClick="{{ resetDesigner }}" style="align-self:flex-start;background:none;border:1px solid oklch(85% 0.01 75);padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">Reiniciar ajustes</button>
@@ -267,12 +282,7 @@
       </div>
 
       <div class="mk-designer-preview" style="position:sticky;top:100px;">
-        <div
-          style="position:relative;width:230px;height:460px;margin:0 auto;border-radius:40px;background:#1c1c1c;overflow:hidden;box-shadow:0 30px 50px -14px rgba(0,0,0,0.35);border:3px solid oklch(20% 0.01 75);touch-action:none;"
-          onPointerMove="{{ onPointerMove }}"
-          onPointerUp="{{ onPointerUp }}"
-          onPointerLeave="{{ onPointerUp }}"
-        >
+        <div style="position:relative;width:230px;height:460px;margin:0 auto;border-radius:40px;background:#1c1c1c;overflow:hidden;box-shadow:0 30px 50px -14px rgba(0,0,0,0.35);border:3px solid oklch(20% 0.01 75);touch-action:none;" onPointerMove="{{ onPointerMove }}" onPointerUp="{{ onPointerUp }}" onPointerLeave="{{ onPointerUp }}">
           <sc-if value="{{ hasUploadedImage }}" hint-placeholder-val="{{ false }}">
             <div onPointerDown="{{ onPointerDown }}" style="{{ imageStyle }}"></div>
           </sc-if>
@@ -329,9 +339,9 @@
         <p style="font-size:13px;color:oklch(70% 0.005 75);max-width:280px;">Fundas de celular personalizadas. Envíos a todo el país.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;">
-        <a href="{{ waGeneralLink }}" target="_blank" style="color:oklch(85% 0.005 75);">WhatsApp: consultas y pedidos</a>
+        <a href="{{ waGeneralLink }}" target="_blank" style="color:oklch(85% 0.005 75);">WhatsApp: +54 11 2662-2513</a>
         <span>mallorka.fundas@gmail.com</span>
-        <span>@mallorka.fundas</span>
+        <a href="https://instagram.com/mallorka.fundas" target="_blank" style="color:oklch(85% 0.005 75);">@mallorka.fundas</a>
       </div>
     </div>
     <p style="text-align:center;font-size:12px;color:oklch(55% 0.005 75);margin:40px 0 0;">© 2026 Mallorka. Todos los derechos reservados.</p>
@@ -339,7 +349,7 @@
 
   <!-- WHATSAPP FLOTANTE -->
   <a href="{{ waGeneralLink }}" target="_blank" aria-label="WhatsApp" style="position:fixed;bottom:20px;right:20px;z-index:45;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.25);">
-    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>
   </a>
 
 </div>
