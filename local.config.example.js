@@ -6,7 +6,7 @@ window.MALLORKA_CONFIG = {
   sheetCsvUrl: "https://docs.google.com/spreadsheets/d/1g2NkaXTtC2L81SoWL0G6xAQcSevVWGy4dxFXHMcXYxk/export?format=csv&gid=0",
 
   // Opcional: número de WhatsApp con código de país, sin + ni espacios
-  whatsappNumber: "5491100000000",
+  whatsappNumber: "5491126622513",
 };
 
 // ── Cómo armar el Google Sheet ─────────────────────────────────────────────
