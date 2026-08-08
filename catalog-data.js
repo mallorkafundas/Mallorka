@@ -174,6 +174,7 @@ export async function fetchSheetProducts(csvUrl, retries = 3) {
             imagen_url: normalizeImageUrl(imagenRaw),
             imagen_raw: imagenRaw,
             activo: r.activo || "true",
+            destacado: (r.destacado || "").trim(),
           };
         });
       if (!products.length) throw new Error("El Google Sheet no tiene productos activos");

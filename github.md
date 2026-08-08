@@ -13,3 +13,8 @@ date: 2026-08-08T19:51:51Z
 | Screen | Repo files |
 |---|---|
 | Mallorka.dc.html (landing page) | Mallorka.dc.html, catalog-data.js |
+
+git status
+git add .
+git commit -m "2da vers"
+git push origin main
