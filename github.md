@@ -1,20 +1,13 @@
 repo: mallorkafundas/Mallorka
 branch: main
-path: Mallorka.dc.html
 
 ## Last sync
-date: 2026-08-08T19:51:51Z
+date: 2026-08-08T21:07:47Z
 
 ### Updated in this project
-- Fixed mobile header: nav links no longer wrap into an awkward 2×2 grid; header collapses to logo + WhatsApp CTA on narrow screens.
-- Tightened hero spacing/typography on mobile.
+- Updated FAQ questions (7 new Q&A entries replacing original 5)
 
 ## Screen map
-| Screen | Repo files |
-|---|---|
-| Mallorka.dc.html (landing page) | Mallorka.dc.html, catalog-data.js |
-
-git status
-git add .
-git commit -m "2da vers"
-git push origin main
+| Screen | Source files |
+|--------|-------------|
+| Main site | Mallorka.dc.html, catalog-data.js |

@@ -3,29 +3,6 @@ export const DEFAULT_SHEET_CSV_URL =
 
 const CATALOG_CACHE_KEY = "mallorka_catalog_v1";
 
-export const CATEGORIES = [
-  { name: "Minimalista", hue: 190 },
-  { name: "Anime", hue: 25 },
-  { name: "Fútbol", hue: 190 },
-  { name: "Frases", hue: 25 },
-  { name: "Naturaleza", hue: 190 },
-];
-
-// Solo para desarrollo local sin Google Sheet configurado.
-export const MOCK_PRODUCTS = [
-  { nombre: "Olas de Mallorca", categoria: "Tropical", marca: "iPhone", precio: 15900, imagen_url: "", activo: "true" },
-  { nombre: "Hojas Monstera", categoria: "Naturaleza", marca: "Samsung", precio: 14500, imagen_url: "", activo: "true" },
-  { nombre: "Atardecer Balear", categoria: "Tropical", marca: "iPhone", precio: 15900, imagen_url: "", activo: "true" },
-  { nombre: "Líneas Simples", categoria: "Minimalista", marca: "Xiaomi", precio: 13900, imagen_url: "", activo: "true" },
-  { nombre: "Goku Kamehameha", categoria: "Anime", marca: "Samsung", precio: 14900, imagen_url: "", activo: "true" },
-  { nombre: "One Piece Crew", categoria: "Anime", marca: "iPhone", precio: 14900, imagen_url: "", activo: "true" },
-  { nombre: "Camiseta Titular", categoria: "Fútbol", marca: "Motorola", precio: 15900, imagen_url: "", activo: "true" },
-  { nombre: "Hinchada Unida", categoria: "Fútbol", marca: "Samsung", precio: 15900, imagen_url: "", activo: "true" },
-  { nombre: "Sé Vos Mismo", categoria: "Frases", marca: "iPhone", precio: 13500, imagen_url: "", activo: "true" },
-  { nombre: "Todo Va a Estar Bien", categoria: "Frases", marca: "Xiaomi", precio: 13500, imagen_url: "", activo: "true" },
-  { nombre: "Palmeras Neón", categoria: "Tropical", marca: "Motorola", precio: 15900, imagen_url: "", activo: "true" },
-  { nombre: "Cielo Estrellado", categoria: "Naturaleza", marca: "iPhone", precio: 14500, imagen_url: "", activo: "true" },
-];
 
 export const PHONE_MODELS = {
   iPhone: ["iPhone 11", "iPhone 12", "iPhone 12 Pro", "iPhone 13", "iPhone 13 Pro", "iPhone 14", "iPhone 14 Pro", "iPhone 15", "iPhone 15 Pro", "iPhone 16", "iPhone 16 Pro", "iPhone 17"],
@@ -41,11 +18,13 @@ export const TESTIMONIALS = [
 ];
 
 export const FAQS = [
-  { q: "¿Cómo sé qué modelo de celular tengo?", a: "Fijate en Ajustes → General → Información en iPhone, o en Ajustes → Acerca del teléfono en Android. También podés buscar el modelo grabado en la caja original." },
-  { q: "¿Puedo usar cualquier foto para personalizar mi funda?", a: "Sí. Subí la imagen, y con las herramientas de zoom y rotación la vas a poder acomodar para que quede perfecta en tu modelo de celular." },
-  { q: "¿Cuánto tardan en llegar los pedidos?", a: "Los envíos a todo el país demoran entre 3 y 5 días hábiles desde que confirmamos el pedido por WhatsApp." },
-  { q: "¿Cómo pago?", a: "Coordinamos el pago por WhatsApp: transferencia, Mercado Pago o tarjeta según disponibilidad." },
-  { q: "¿De qué material son las fundas?", a: "Silicona TPU flexible, con bordes reforzados y cutout preciso para cámaras y botones." },
+  { q: "¿Cómo hago un pedido?", a: "Elegí un diseño del catálogo o usá el diseñador para subir tu foto. Seleccioná la marca y modelo de tu celular y tocá el botón de WhatsApp. Te confirmamos el pedido y coordinamos el pago y envío." },
+  { q: "¿La misma imagen sirve para cualquier celular?", a: "Sí. Los diseños del catálogo son universales: la foto es la misma y nosotros adaptamos la funda al molde de tu marca y modelo (iPhone, Samsung, Motorola o Xiaomi)." },
+  { q: "¿No encontrás tu modelo de celular?", a: "Escribinos por WhatsApp indicando la marca y el modelo exacto de tu celular. Muchas veces disponemos del molde aunque no figure en la lista de la web, o te confirmamos si podemos conseguirlo." },
+  { q: "¿Cuánto tarda la producción y el envío?", a: "La producción suele demorar entre 2 y 4 días hábiles. Los envíos en CABA y GBA tardan 1 a 2 días extra; al interior del país depende del correo o transporte elegido." },
+  { q: "¿Qué formas de pago aceptan?", a: "Mercado Pago, transferencia bancaria y efectivo (retiro o entrega coordinada). Te pasamos todos los datos por WhatsApp al confirmar tu pedido." },
+  { q: "¿Qué calidad de imagen necesito para una funda personalizada?", a: "Recomendamos fotos nítidas, bien iluminadas y en alta resolución. Si la imagen no es ideal, te avisamos antes de imprimir para que puedas enviar otra." },
+  { q: "¿Hacen cambios o devoluciones?", a: "Si hay un error de impresión o de modelo por nuestra parte, lo resolvemos sin costo. Por tratarse de productos personalizados, no aceptamos devoluciones por cambio de opinión una vez confirmado el diseño." },
 ];
 
 export function parseCSV(text) {
