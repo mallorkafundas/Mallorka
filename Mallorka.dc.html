@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./local.config.js"></script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -29,7 +28,7 @@
       .mk-nav-links { gap: 14px !important; flex-wrap: wrap; }
       .mk-nav-links a:not([href*="wa.me"]) { font-size: 14px !important; }
       .mk-section { padding: 56px 20px !important; }
-      .mk-hero { padding: 48px 20px !important; }
+      .mk-hero { padding: 48px 20px 56px !important; }
       .mk-hero-title { font-size: 38px !important; }
       .mk-hero-copy { max-width: none !important; }
       .mk-trust { padding: 20px !important; gap: 16px !important; flex-direction: column; align-items: flex-start !important; }
@@ -41,13 +40,13 @@
       h2 { font-size: 26px !important; }
     }
     @media (max-width: 600px) {
-      .mk-header { padding: 12px 16px !important; }
-      .mk-nav-links { width: 100%; gap: 10px !important; }
-      .mk-nav-links a { flex: 1 1 calc(50% - 5px); text-align: center; font-size: 13px !important; }
-      .mk-nav-links a[href*="wa.me"] { flex: 1 1 100%; }
+      .mk-header { padding: 12px 16px !important; flex-wrap: nowrap !important; gap: 0 !important; }
+      .mk-nav-links { display: none !important; }
+      .mk-mobile-nav { display: flex !important; }
+      .mk-mobile-menu { display: flex !important; }
       .mk-section { padding: 40px 16px !important; }
-      .mk-hero { padding: 36px 16px !important; }
-      .mk-hero-title { font-size: 32px !important; }
+      .mk-hero { padding: 40px 16px 48px !important; }
+      .mk-hero-title { font-size: 34px !important; }
       .mk-hero-copy p { font-size: 16px !important; margin-bottom: 24px !important; }
       .mk-hero-actions { flex-direction: column; }
       .mk-hero-actions a { width: 100%; text-align: center; padding: 14px 20px !important; }
@@ -74,7 +73,25 @@
       <a href="#faq" style="font-size:15px;font-weight:500;color:oklch(22% 0.015 75);">Preguntas</a>
       <a href="{{ waGeneralLink }}" target="_blank" style="background:oklch(58% 0.17 25);color:#fff;padding:10px 18px;border-radius:8px;font-weight:600;font-size:14px;">Escribinos</a>
     </nav>
+    <div class="mk-mobile-nav" style="display:none;align-items:center;gap:10px;">
+      <a href="{{ waGeneralLink }}" target="_blank" style="background:oklch(58% 0.17 25);color:#fff;padding:9px 16px;border-radius:8px;font-weight:600;font-size:13px;">Escribinos</a>
+      <button onClick="{{ toggleMobileMenu }}" aria-label="Menú" style="width:38px;height:38px;border-radius:8px;border:1px solid oklch(85% 0.01 75);background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;">
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <span style="width:16px;height:2px;background:oklch(22% 0.015 75);border-radius:1px;"></span>
+          <span style="width:16px;height:2px;background:oklch(22% 0.015 75);border-radius:1px;"></span>
+          <span style="width:16px;height:2px;background:oklch(22% 0.015 75);border-radius:1px;"></span>
+        </div>
+      </button>
+    </div>
   </header>
+  <sc-if value="{{ mobileMenuOpen }}">
+    <div class="mk-mobile-menu" style="display:none;flex-direction:column;padding:8px 16px 16px;background:oklch(98% 0.01 75 / 0.98);backdrop-filter:blur(8px);border-bottom:1px solid oklch(90% 0.01 75);position:sticky;top:62px;z-index:39;">
+      <a href="#catalogo" onClick="{{ closeMobileMenu }}" style="padding:12px 4px;font-size:15px;font-weight:500;color:oklch(22% 0.015 75);border-bottom:1px solid oklch(92% 0.01 75);">Catálogo</a>
+      <a href="#disenador" onClick="{{ closeMobileMenu }}" style="padding:12px 4px;font-size:15px;font-weight:500;color:oklch(22% 0.015 75);border-bottom:1px solid oklch(92% 0.01 75);">Diseñá tu funda</a>
+      <a href="#testimonios" onClick="{{ closeMobileMenu }}" style="padding:12px 4px;font-size:15px;font-weight:500;color:oklch(22% 0.015 75);border-bottom:1px solid oklch(92% 0.01 75);">Testimonios</a>
+      <a href="#faq" onClick="{{ closeMobileMenu }}" style="padding:12px 4px;font-size:15px;font-weight:500;color:oklch(22% 0.015 75);">Preguntas</a>
+    </div>
+  </sc-if>
 
   <!-- HERO -->
   <section class="mk-hero" style="padding:80px 40px;max-width:1280px;margin:0 auto;">
@@ -95,6 +112,35 @@
     <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:oklch(45% 0.01 75);"><span style="width:8px;height:8px;border-radius:50%;background:oklch(58% 0.17 25);"></span>iPhone · Samsung · Motorola · Xiaomi</div>
     <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:oklch(45% 0.01 75);"><span style="width:8px;height:8px;border-radius:50%;background:oklch(58% 0.13 190);"></span>Coordinás todo por WhatsApp</div>
   </section>
+
+  <!-- DESTACADOS -->
+  <sc-if value="{{ showFeaturedSection }}">
+    <section class="mk-section" style="padding:80px 40px;max-width:1280px;margin:0 auto;">
+      <h2 style="font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;margin:0 0 8px;">Productos destacados</h2>
+      <p style="color:oklch(45% 0.01 75);margin:0 0 36px;font-size:16px;">Los diseños que más se piden.</p>
+      <div class="mk-catalog-grid">
+        <sc-for list="{{ featuredProducts }}" as="p" hint-placeholder-count="4">
+          <div style="background:#fff;border-radius:16px;overflow:hidden;border:1px solid oklch(90% 0.01 75);display:flex;flex-direction:column;position:relative;">
+            <span style="position:absolute;top:10px;left:10px;background:oklch(58% 0.17 25);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;z-index:1;">Destacado</span>
+            <div style="{{ p.imgWrapStyle }}">
+              <sc-if value="{{ p.hasImage }}">
+                <img src="{{ p.imagenUrl }}" alt="{{ p.nombre }}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onError="{{ p.onImageError }}" style="{{ p.imgStyle }}" />
+              </sc-if>
+              <sc-if value="{{ p.showPlaceholderLabel }}">
+                <span style="font-family:monospace;font-size:11px;color:rgba(255,255,255,0.85);text-align:center;padding:0 12px;">foto: {{ p.nombre }}</span>
+              </sc-if>
+            </div>
+            <div style="padding:16px;display:flex;flex-direction:column;gap:8px;flex:1;">
+              <div style="font-size:11px;font-weight:600;color:oklch(45% 0.01 75);text-transform:uppercase;letter-spacing:0.04em;">{{ p.marca }}</div>
+              <div style="font-weight:600;font-size:16px;">{{ p.nombre }}</div>
+              <div style="font-weight:700;font-size:18px;color:oklch(58% 0.17 25);">{{ p.precioFmt }}</div>
+              <a href="{{ p.waLink }}" target="_blank" style="margin-top:8px;text-align:center;background:oklch(22% 0.015 75);color:#fff;padding:10px;border-radius:8px;font-weight:600;font-size:14px;">Pedir por WhatsApp</a>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </sc-if>
 
   <!-- CATEGORIAS -->
   <sc-if value="{{ showCategoriesSection }}">
@@ -291,15 +337,11 @@
     <p style="text-align:center;font-size:12px;color:oklch(55% 0.005 75);margin:40px 0 0;">© 2026 Mallorka. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- DISCOUNT POPUP -->
-  <sc-if value="{{ popupVisible }}">
-    <div style="position:fixed;bottom:16px;right:16px;left:16px;max-width:300px;margin-left:auto;background:#fff;border-radius:16px;box-shadow:0 20px 40px -10px rgba(0,0,0,0.25);padding:24px;z-index:50;animation:mk-pop-in 0.35s ease;border:1px solid oklch(90% 0.01 75);">
-      <button onClick="{{ dismissPopup }}" style="position:absolute;top:10px;right:12px;background:none;border:none;font-size:16px;cursor:pointer;color:oklch(55% 0.01 75);">×</button>
-      <div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:16px;margin-bottom:8px;">10% OFF en tu primera funda</div>
-      <p style="font-size:13px;color:oklch(45% 0.01 75);margin:0 0 12px;">Usá el código en tu pedido por WhatsApp.</p>
-      <div style="display:inline-block;background:oklch(96% 0.012 75);border:1px dashed oklch(58% 0.17 25);color:oklch(58% 0.17 25);font-weight:700;letter-spacing:0.05em;padding:8px 14px;border-radius:8px;font-size:14px;">MALLORKA10</div>
-    </div>
-  </sc-if>
+  <!-- WHATSAPP FLOTANTE -->
+  <a href="{{ waGeneralLink }}" target="_blank" style="position:fixed;bottom:20px;left:20px;z-index:45;display:flex;align-items:center;gap:10px;background:oklch(58% 0.17 25);color:#fff;padding:14px 20px;border-radius:30px;font-weight:600;font-size:14px;box-shadow:0 12px 24px -8px rgba(0,0,0,0.35);">
+    <span style="width:8px;height:8px;border-radius:50%;background:#fff;"></span>
+    WhatsApp
+  </a>
 
 </div>
 
@@ -307,8 +349,7 @@
 <script type="text/x-dc" data-dc-script data-props="{
   &quot;$preview&quot;: {&quot;width&quot;: 1440, &quot;height&quot;: 1400},
   &quot;whatsappNumber&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;5491100000000&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;WhatsApp&quot;},
-  &quot;sheetCsvUrl&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;https://docs.google.com/spreadsheets/d/1g2NkaXTtC2L81SoWL0G6xAQcSevVWGy4dxFXHMcXYxk/export?format=csv&amp;gid=0&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Catálogo (Google Sheets)&quot;},
-  &quot;showDiscountPopup&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Extras&quot;}
+  &quot;sheetCsvUrl&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;https://docs.google.com/spreadsheets/d/1g2NkaXTtC2L81SoWL0G6xAQcSevVWGy4dxFXHMcXYxk/export?format=csv&amp;gid=0&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Catálogo (Google Sheets)&quot;}
 }">
 class Component extends DCLogic {
   state = {
@@ -323,8 +364,7 @@ class Component extends DCLogic {
     loadError: false,
     imageFallbackIndex: {},
     faqOpen: null,
-    popupVisible: false,
-    popupDismissed: false,
+    mobileMenuOpen: false,
     dBrand: "iPhone",
     dModel: "",
     uploadedImage: null,
@@ -360,12 +400,6 @@ class Component extends DCLogic {
       dModel: (mod.PHONE_MODELS.iPhone && mod.PHONE_MODELS.iPhone[3]) || "",
     });
     await this.loadProducts(mod);
-    const showPopup = this.props.showDiscountPopup !== false;
-    if (showPopup) {
-      setTimeout(() => {
-        if (!this.state.popupDismissed) this.setState({ popupVisible: true });
-      }, 4000);
-    }
   }
 
   productMatchesCategory(p, category, mod) {
@@ -436,7 +470,8 @@ class Component extends DCLogic {
   setCategory = (cat) => this.setState({ activeCategory: cat });
   onBrandFilterChange = (e) => this.setState({ activeBrand: e.target.value });
   toggleFaq = (i) => this.setState((s) => ({ faqOpen: s.faqOpen === i ? null : i }));
-  dismissPopup = () => this.setState({ popupVisible: false, popupDismissed: true });
+  toggleMobileMenu = () => this.setState((s) => ({ mobileMenuOpen: !s.mobileMenuOpen }));
+  closeMobileMenu = () => this.setState({ mobileMenuOpen: false });
 
   setDesignerBrand = (brand) => {
     const models = (this.state.phoneModels && this.state.phoneModels[brand]) || [];
@@ -484,6 +519,50 @@ class Component extends DCLogic {
         this.productMatchesCategory(p, s.activeCategory, mod) &&
         this.productMatchesBrand(p, s.activeBrand)
     );
+
+    const activeProducts = s.products.filter((p) => mod.isProductActive(p.activo));
+    const markedFeatured = activeProducts.filter((p) => String(p.destacado ?? "").toLowerCase() === "true");
+    const featuredSource = (markedFeatured.length ? markedFeatured : activeProducts).slice(0, 4);
+
+    const mapProductCard = (p) => {
+      const imageSource = p.imagen_raw || p.imagen_url || "";
+      const fallbacks = mod.getDriveImageFallbacks ? mod.getDriveImageFallbacks(imageSource) : (imageSource ? [imageSource] : []);
+      const fbIdx = s.imageFallbackIndex[p.nombre] || 0;
+      const imagenUrl = fallbacks[Math.min(fbIdx, Math.max(fallbacks.length - 1, 0))] || "";
+      const hasImage = !!imagenUrl;
+      return {
+        nombre: p.nombre,
+        marca: p.marca === "todas" ? "Todas las marcas" : p.marca,
+        precioFmt: this.formatPrice(p.precio),
+        hasImage,
+        imagenUrl,
+        onImageError: () => this.onProductImageError(p.nombre),
+        showPlaceholderLabel: !hasImage,
+        waLink: this.waLink(
+          p.marca === "todas"
+            ? 'Hola! Quiero pedir la funda "' + p.nombre + '" (' + this.formatPrice(p.precio) + ")."
+            : 'Hola! Quiero pedir la funda "' + p.nombre + '" para ' + p.marca + " (" + this.formatPrice(p.precio) + ")."
+        ),
+        imgWrapStyle: {
+          overflow: "hidden",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: hasImage ? "auto" : "180px",
+          padding: hasImage ? "12px" : "0",
+          background: hasImage
+            ? "oklch(96% 0.01 75)"
+            : "repeating-linear-gradient(135deg, " + coral + " 0px 16px, " + teal + " 16px 32px)",
+        },
+        imgStyle: {
+          width: "100%",
+          height: "auto",
+          maxHeight: "420px",
+          objectFit: "contain",
+          display: "block",
+        },
+      };
+    };
 
     const categoryNames = new Set();
     for (const p of s.products) {
@@ -553,45 +632,9 @@ class Component extends DCLogic {
       reloadCatalog: this.reloadCatalog,
       showCategoriesSection: !s.loading && !s.loadError && s.categories.length > 0,
       showEmptyState: !s.loading && !s.loadError && filteredProducts.length === 0,
-      filteredProducts: filteredProducts.map((p) => {
-        const imageSource = p.imagen_raw || p.imagen_url || "";
-        const fallbacks = mod.getDriveImageFallbacks ? mod.getDriveImageFallbacks(imageSource) : (imageSource ? [imageSource] : []);
-        const fbIdx = s.imageFallbackIndex[p.nombre] || 0;
-        const imagenUrl = fallbacks[Math.min(fbIdx, Math.max(fallbacks.length - 1, 0))] || "";
-        const hasImage = !!imagenUrl;
-        return {
-          nombre: p.nombre,
-          marca: p.marca === "todas" ? "Todas las marcas" : p.marca,
-          precioFmt: this.formatPrice(p.precio),
-          hasImage,
-          imagenUrl,
-          onImageError: () => this.onProductImageError(p.nombre),
-          showPlaceholderLabel: !hasImage,
-          waLink: this.waLink(
-            p.marca === "todas"
-              ? 'Hola! Quiero pedir la funda "' + p.nombre + '" (' + this.formatPrice(p.precio) + ")."
-              : 'Hola! Quiero pedir la funda "' + p.nombre + '" para ' + p.marca + " (" + this.formatPrice(p.precio) + ")."
-          ),
-          imgWrapStyle: {
-            overflow: "hidden",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            minHeight: hasImage ? "auto" : "180px",
-            padding: hasImage ? "12px" : "0",
-            background: hasImage
-              ? "oklch(96% 0.01 75)"
-              : "repeating-linear-gradient(135deg, " + coral + " 0px 16px, " + teal + " 16px 32px)",
-          },
-          imgStyle: {
-            width: "100%",
-            height: "auto",
-            maxHeight: "420px",
-            objectFit: "contain",
-            display: "block",
-          },
-        };
-      }),
+      filteredProducts: filteredProducts.map(mapProductCard),
+      showFeaturedSection: !s.loading && !s.loadError && featuredSource.length > 0,
+      featuredProducts: featuredSource.map(mapProductCard),
       categoryFilters,
       brandFilters: distinctBrands,
       onBrandFilterChange: this.onBrandFilterChange,
@@ -642,8 +685,9 @@ class Component extends DCLogic {
       },
       testimonials: s.testimonialsData,
       faqs,
-      popupVisible: s.popupVisible,
-      dismissPopup: this.dismissPopup,
+      mobileMenuOpen: s.mobileMenuOpen,
+      toggleMobileMenu: this.toggleMobileMenu,
+      closeMobileMenu: this.closeMobileMenu,
     };
   }
 }
