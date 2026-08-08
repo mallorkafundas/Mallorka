@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./local.config.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; font-family: 'Inter', sans-serif; }
+    a { color: oklch(58% 0.17 25); text-decoration: none; }
+    a:hover { color: oklch(48% 0.17 25); }
+    input[type="range"] { accent-color: oklch(60% 0.16 25); }
+    @keyframes mk-pop-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .mk-hero-copy { max-width: 640px; }
+    .mk-hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .mk-hero-actions a { box-sizing: border-box; }
+    .mk-catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 24px; }
+    .mk-catalog-filters { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 28px; align-items: flex-start; }
+    .mk-model-select { width: 100%; max-width: 320px; box-sizing: border-box; }
+    .mk-designer-cta { box-sizing: border-box; }
+    @media (max-width: 900px) {
+      .mk-header { padding: 14px 20px !important; flex-wrap: wrap; gap: 12px; }
+      .mk-nav-links { gap: 14px !important; flex-wrap: wrap; }
+      .mk-nav-links a:not([href*="wa.me"]) { font-size: 14px !important; }
+      .mk-section { padding: 56px 20px !important; }
+      .mk-hero { padding: 48px 20px !important; }
+      .mk-hero-title { font-size: 38px !important; }
+      .mk-hero-copy { max-width: none !important; }
+      .mk-trust { padding: 20px !important; gap: 16px !important; flex-direction: column; align-items: flex-start !important; }
+      .mk-designer-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
+      .mk-designer-preview { position: static !important; }
+      .mk-footer { padding: 40px 20px !important; }
+      .mk-footer-inner { flex-direction: column !important; }
+      .mk-catalog-section { border-radius: 16px !important; }
+      h2 { font-size: 26px !important; }
+    }
+    @media (max-width: 600px) {
+      .mk-header { padding: 12px 16px !important; }
+      .mk-nav-links { width: 100%; gap: 10px !important; }
+      .mk-nav-links a { flex: 1 1 calc(50% - 5px); text-align: center; font-size: 13px !important; }
+      .mk-nav-links a[href*="wa.me"] { flex: 1 1 100%; }
+      .mk-section { padding: 40px 16px !important; }
+      .mk-hero { padding: 36px 16px !important; }
+      .mk-hero-title { font-size: 32px !important; }
+      .mk-hero-copy p { font-size: 16px !important; margin-bottom: 24px !important; }
+      .mk-hero-actions { flex-direction: column; }
+      .mk-hero-actions a { width: 100%; text-align: center; padding: 14px 20px !important; }
+      .mk-catalog-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important; gap: 16px !important; }
+      .mk-catalog-section { border-radius: 0 !important; padding-left: 16px !important; padding-right: 16px !important; }
+      .mk-catalog-filters { flex-direction: column; gap: 16px !important; }
+      .mk-model-select { max-width: none !important; }
+      .mk-designer-cta { width: 100% !important; display: block !important; }
+      .mk-trust { padding: 16px !important; }
+      h2 { font-size: 24px !important; }
+    }
+  </style>
+</helmet>
+
+<div style="background:oklch(98% 0.01 75);color:oklch(22% 0.015 75);min-height:100vh;">
+
+  <!-- HEADER -->
+  <header class="mk-header" style="position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:16px 40px;background:oklch(98% 0.01 75 / 0.92);backdrop-filter:blur(8px);border-bottom:1px solid oklch(90% 0.01 75);">
+    <div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:24px;letter-spacing:-0.02em;color:oklch(58% 0.17 25);">Mallorka</div>
+    <nav class="mk-nav-links" style="display:flex;gap:28px;align-items:center;">
+      <a href="#catalogo" style="font-size:15px;font-weight:500;color:oklch(22% 0.015 75);">Catálogo</a>
+      <a href="#disenador" style="font-size:15px;font-weight:500;color:oklch(22% 0.015 75);">Diseñá tu funda</a>
+      <a href="#testimonios" style="font-size:15px;font-weight:500;color:oklch(22% 0.015 75);">Testimonios</a>
+      <a href="#faq" style="font-size:15px;font-weight:500;color:oklch(22% 0.015 75);">Preguntas</a>
+      <a href="{{ waGeneralLink }}" target="_blank" style="background:oklch(58% 0.17 25);color:#fff;padding:10px 18px;border-radius:8px;font-weight:600;font-size:14px;">Escribinos</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="mk-hero" style="padding:80px 40px;max-width:1280px;margin:0 auto;">
+    <div class="mk-hero-copy">
+      <h1 class="mk-hero-title" style="font-family:'Poppins',sans-serif;font-size:52px;font-weight:800;line-height:1.05;margin:0 0 20px;letter-spacing:-0.02em;">Tu foto.<br>Tu funda.<br><span style="color:oklch(58% 0.17 25);">Tu estilo.</span></h1>
+      <p style="font-size:18px;line-height:1.6;color:oklch(45% 0.01 75);margin:0 0 32px;">Subí una foto, ajustala con zoom y rotación hasta que quede perfecta, y elegí el modelo exacto de tu celular. O buscá algo listo en el catálogo.</p>
+      <div class="mk-hero-actions">
+        <a href="#disenador" style="background:oklch(58% 0.17 25);color:#fff;padding:16px 28px;border-radius:10px;font-weight:600;font-size:16px;">Diseñá tu funda</a>
+        <a href="#catalogo" style="background:#fff;color:oklch(22% 0.015 75);padding:16px 28px;border-radius:10px;font-weight:600;font-size:16px;border:1px solid oklch(85% 0.01 75);">Ver catálogo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <section class="mk-trust" style="display:flex;justify-content:center;gap:56px;flex-wrap:wrap;padding:28px 40px;background:#fff;border-top:1px solid oklch(90% 0.01 75);border-bottom:1px solid oklch(90% 0.01 75);">
+    <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:oklch(45% 0.01 75);"><span style="width:8px;height:8px;border-radius:50%;background:oklch(58% 0.17 25);"></span>Hecha a pedido</div>
+    <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:oklch(45% 0.01 75);"><span style="width:8px;height:8px;border-radius:50%;background:oklch(58% 0.13 190);"></span>Envíos a todo el país</div>
+    <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:oklch(45% 0.01 75);"><span style="width:8px;height:8px;border-radius:50%;background:oklch(58% 0.17 25);"></span>iPhone · Samsung · Motorola · Xiaomi</div>
+    <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:oklch(45% 0.01 75);"><span style="width:8px;height:8px;border-radius:50%;background:oklch(58% 0.13 190);"></span>Coordinás todo por WhatsApp</div>
+  </section>
+
+  <!-- CATEGORIAS -->
+  <sc-if value="{{ showCategoriesSection }}">
+    <section class="mk-section" style="padding:80px 40px;max-width:1280px;margin:0 auto;">
+      <h2 style="font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;margin:0 0 8px;">Elegí tu temática</h2>
+      <p style="color:oklch(45% 0.01 75);margin:0 0 36px;font-size:16px;">Explorá el catálogo por estilo.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));gap:16px;">
+        <sc-for list="{{ categoriesWithStyle }}" as="cat" hint-placeholder-count="6">
+          <a href="#catalogo" onClick="{{ cat.onSelect }}" style="{{ cat.cardStyle }}">
+            <div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:17px;">{{ cat.name }}</div>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- CATALOGO -->
+  <section id="catalogo" class="mk-section mk-catalog-section" style="padding:80px 40px;max-width:1280px;margin:0 auto;background:oklch(96% 0.012 75);border-radius:24px;">
+    <h2 style="font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;margin:0 0 8px;">Catálogo</h2>
+    <p style="color:oklch(45% 0.01 75);margin:0 0 28px;font-size:16px;">Diseños listos para pedir. Se actualiza automáticamente desde nuestro Google Sheet.</p>
+
+    <div class="mk-catalog-filters">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;flex:1;">
+        <sc-for list="{{ categoryFilters }}" as="f" hint-placeholder-count="4">
+          <button onClick="{{ f.onSelect }}" style="{{ f.style }}">{{ f.label }}</button>
+        </sc-for>
+      </div>
+      <select onChange="{{ onBrandFilterChange }}" style="padding:10px 14px;border-radius:8px;border:1px solid oklch(85% 0.01 75);font-size:14px;font-family:'Inter',sans-serif;background:#fff;width:100%;max-width:220px;box-sizing:border-box;">
+        <sc-for list="{{ brandFilters }}" as="b" hint-placeholder-count="4">
+          <option value="{{ b }}">{{ b }}</option>
+        </sc-for>
+      </select>
+    </div>
+
+    <sc-if value="{{ loading }}" hint-placeholder-val="{{ true }}">
+      <p style="color:oklch(45% 0.01 75);font-size:15px;">Cargando catálogo…</p>
+    </sc-if>
+
+    <sc-if value="{{ loadError }}">
+      <div style="background:#fff;border:1px solid oklch(90% 0.01 75);border-radius:12px;padding:20px;margin-bottom:24px;">
+        <p style="color:oklch(45% 0.01 75);font-size:15px;margin:0 0 12px;">No pudimos cargar el catálogo. Puede ser la conexión del celular. Probá de nuevo.</p>
+        <button onClick="{{ reloadCatalog }}" style="background:oklch(58% 0.17 25);color:#fff;border:none;padding:10px 18px;border-radius:8px;font-weight:600;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Reintentar</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ showEmptyState }}">
+      <p style="color:oklch(45% 0.01 75);font-size:15px;">No hay diseños que coincidan con ese filtro.</p>
+    </sc-if>
+
+    <sc-if value="{{ !loading && !loadError }}">
+    <div class="mk-catalog-grid">
+      <sc-for list="{{ filteredProducts }}" as="p" hint-placeholder-count="8">
+        <div style="background:#fff;border-radius:16px;overflow:hidden;border:1px solid oklch(90% 0.01 75);display:flex;flex-direction:column;">
+          <div style="{{ p.imgWrapStyle }}">
+            <sc-if value="{{ p.hasImage }}">
+              <img src="{{ p.imagenUrl }}" alt="{{ p.nombre }}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onError="{{ p.onImageError }}" style="{{ p.imgStyle }}" />
+            </sc-if>
+            <sc-if value="{{ p.showPlaceholderLabel }}">
+              <span style="font-family:monospace;font-size:11px;color:rgba(255,255,255,0.85);text-align:center;padding:0 12px;">foto: {{ p.nombre }}</span>
+            </sc-if>
+          </div>
+          <div style="padding:16px;display:flex;flex-direction:column;gap:8px;flex:1;">
+            <div style="font-size:11px;font-weight:600;color:oklch(45% 0.01 75);text-transform:uppercase;letter-spacing:0.04em;">{{ p.marca }}</div>
+            <div style="font-weight:600;font-size:16px;">{{ p.nombre }}</div>
+            <div style="font-weight:700;font-size:18px;color:oklch(58% 0.17 25);">{{ p.precioFmt }}</div>
+            <a href="{{ p.waLink }}" target="_blank" style="margin-top:8px;text-align:center;background:oklch(22% 0.015 75);color:#fff;padding:10px;border-radius:8px;font-weight:600;font-size:14px;">Pedir por WhatsApp</a>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    </sc-if>
+  </section>
+
+  <!-- DISEÑADOR -->
+  <section id="disenador" class="mk-section" style="padding:80px 40px;max-width:1280px;margin:0 auto;">
+    <h2 style="font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;margin:0 0 8px;">Diseñá tu funda</h2>
+    <p style="color:oklch(45% 0.01 75);margin:0 0 36px;font-size:16px;max-width:600px;">Elegí tu celular, subí tu foto y ajustala con zoom y rotación hasta que encaje perfecto.</p>
+
+    <div class="mk-designer-grid" style="display:grid;grid-template-columns:1fr 320px;gap:56px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:28px;">
+        <div>
+          <div style="font-weight:600;font-size:14px;margin-bottom:10px;">1. Marca</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <sc-for list="{{ brandOptions }}" as="br" hint-placeholder-count="4">
+              <button onClick="{{ br.onSelect }}" style="{{ br.style }}">{{ br.name }}</button>
+            </sc-for>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-weight:600;font-size:14px;margin-bottom:10px;">2. Modelo</div>
+          <select onChange="{{ onModelChange }}" value="{{ dModel }}" class="mk-model-select" style="padding:12px 14px;border-radius:8px;border:1px solid oklch(85% 0.01 75);font-size:14px;font-family:'Inter',sans-serif;background:#fff;">
+            <sc-for list="{{ modelOptions }}" as="m" hint-placeholder-count="4">
+              <option value="{{ m }}">{{ m }}</option>
+            </sc-for>
+          </select>
+        </div>
+
+        <div>
+          <div style="font-weight:600;font-size:14px;margin-bottom:10px;">3. Tu foto</div>
+          <label style="display:inline-block;cursor:pointer;background:oklch(22% 0.015 75);color:#fff;padding:12px 22px;border-radius:8px;font-weight:600;font-size:14px;">
+            {{ uploadLabel }}
+            <input type="file" accept="image/*" onChange="{{ onFileChange }}" style="display:none;" />
+          </label>
+        </div>
+
+        <sc-if value="{{ hasUploadedImage }}">
+          <div style="display:flex;flex-direction:column;gap:18px;max-width:280px;animation:mk-pop-in 0.3s ease;">
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:500;color:oklch(45% 0.01 75);margin-bottom:6px;"><span>Zoom</span></div>
+              <input type="range" min="1" max="3" step="0.05" value="{{ zoom }}" onChange="{{ onZoomChange }}" style="width:100%;" />
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:500;color:oklch(45% 0.01 75);margin-bottom:6px;"><span>Rotación</span></div>
+              <input type="range" min="-45" max="45" step="1" value="{{ rotation }}" onChange="{{ onRotationChange }}" style="width:100%;" />
+            </div>
+            <p style="font-size:12px;color:oklch(55% 0.01 75);margin:0;">Tip: arrastrá la foto dentro de la funda para reacomodarla.</p>
+            <button onClick="{{ resetDesigner }}" style="align-self:flex-start;background:none;border:1px solid oklch(85% 0.01 75);padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">Reiniciar ajustes</button>
+          </div>
+        </sc-if>
+
+        <a href="{{ designerWaLink }}" target="_blank" class="mk-designer-cta" style="{{ designerCtaStyle }}">Pedir esta funda por WhatsApp</a>
+        <p style="font-size:12px;color:oklch(55% 0.01 75);max-width:320px;margin:-14px 0 0;">Por WhatsApp coordinamos el pedido; adjuntá ahí la misma foto que usaste acá para confirmar el diseño.</p>
+      </div>
+
+      <div class="mk-designer-preview" style="position:sticky;top:100px;">
+        <div
+          style="position:relative;width:230px;height:460px;margin:0 auto;border-radius:40px;background:#1c1c1c;overflow:hidden;box-shadow:0 30px 50px -14px rgba(0,0,0,0.35);border:3px solid oklch(20% 0.01 75);touch-action:none;"
+          onPointerMove="{{ onPointerMove }}"
+          onPointerUp="{{ onPointerUp }}"
+          onPointerLeave="{{ onPointerUp }}"
+        >
+          <sc-if value="{{ hasUploadedImage }}" hint-placeholder-val="{{ false }}">
+            <div onPointerDown="{{ onPointerDown }}" style="{{ imageStyle }}"></div>
+          </sc-if>
+          <sc-if value="{{ !hasUploadedImage }}">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 24px;background:repeating-linear-gradient(135deg, oklch(30% 0.01 75) 0px 14px, oklch(24% 0.01 75) 14px 28px);">
+              <span style="font-family:monospace;font-size:12px;color:rgba(255,255,255,0.6);">subí una foto para ver la vista previa</span>
+            </div>
+          </sc-if>
+          <div style="position:absolute;top:18px;left:18px;width:56px;height:56px;border-radius:16px;background:oklch(20% 0.01 75 / 0.9);pointer-events:none;"></div>
+          <div style="position:absolute;top:30px;left:30px;width:16px;height:16px;border-radius:50%;background:#111;pointer-events:none;"></div>
+          <div style="position:absolute;top:52px;left:30px;width:10px;height:10px;border-radius:50%;background:#333;pointer-events:none;"></div>
+        </div>
+        <p style="text-align:center;font-size:12px;color:oklch(55% 0.01 75);margin-top:12px;">{{ dBrand }} {{ dModel }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section id="testimonios" class="mk-section" style="padding:80px 40px;max-width:1280px;margin:0 auto;">
+    <h2 style="font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;margin:0 0 36px;">Lo que dicen nuestros clientes</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:24px;">
+      <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="3">
+        <div style="background:#fff;border:1px solid oklch(90% 0.01 75);border-radius:16px;padding:28px;">
+          <p style="font-size:15px;line-height:1.6;margin:0 0 16px;color:oklch(30% 0.01 75);">"{{ t.text }}"</p>
+          <p style="font-size:13px;font-weight:600;color:oklch(45% 0.01 75);margin:0;">{{ t.author }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="mk-section" style="padding:80px 40px;max-width:800px;margin:0 auto;">
+    <h2 style="font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;margin:0 0 36px;">Preguntas frecuentes</h2>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <sc-for list="{{ faqs }}" as="item" hint-placeholder-count="5">
+        <div style="border:1px solid oklch(90% 0.01 75);border-radius:12px;background:#fff;overflow:hidden;">
+          <button onClick="{{ item.onToggle }}" style="width:100%;text-align:left;padding:18px 20px;background:none;border:none;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;color:oklch(22% 0.015 75);">
+            {{ item.q }}
+            <span>{{ item.icon }}</span>
+          </button>
+          <sc-if value="{{ item.open }}">
+            <p style="padding:0 20px 20px;margin:0;font-size:14px;line-height:1.6;color:oklch(45% 0.01 75);">{{ item.a }}</p>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="mk-footer" style="padding:56px 40px;background:oklch(20% 0.015 75);color:oklch(85% 0.005 75);">
+    <div class="mk-footer-inner" style="max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px;">
+      <div>
+        <div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:22px;color:#fff;margin-bottom:8px;">Mallorka</div>
+        <p style="font-size:13px;color:oklch(70% 0.005 75);max-width:280px;">Fundas de celular personalizadas. Envíos a todo el país.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;">
+        <a href="{{ waGeneralLink }}" target="_blank" style="color:oklch(85% 0.005 75);">WhatsApp: consultas y pedidos</a>
+        <span>hola@mallorka.com</span>
+        <span>@mallorka.ar</span>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:12px;color:oklch(55% 0.005 75);margin:40px 0 0;">© 2026 Mallorka. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- DISCOUNT POPUP -->
+  <sc-if value="{{ popupVisible }}">
+    <div style="position:fixed;bottom:16px;right:16px;left:16px;max-width:300px;margin-left:auto;background:#fff;border-radius:16px;box-shadow:0 20px 40px -10px rgba(0,0,0,0.25);padding:24px;z-index:50;animation:mk-pop-in 0.35s ease;border:1px solid oklch(90% 0.01 75);">
+      <button onClick="{{ dismissPopup }}" style="position:absolute;top:10px;right:12px;background:none;border:none;font-size:16px;cursor:pointer;color:oklch(55% 0.01 75);">×</button>
+      <div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:16px;margin-bottom:8px;">10% OFF en tu primera funda</div>
+      <p style="font-size:13px;color:oklch(45% 0.01 75);margin:0 0 12px;">Usá el código en tu pedido por WhatsApp.</p>
+      <div style="display:inline-block;background:oklch(96% 0.012 75);border:1px dashed oklch(58% 0.17 25);color:oklch(58% 0.17 25);font-weight:700;letter-spacing:0.05em;padding:8px 14px;border-radius:8px;font-size:14px;">MALLORKA10</div>
+    </div>
+  </sc-if>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: {&quot;width&quot;: 1440, &quot;height&quot;: 1400},
+  &quot;whatsappNumber&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;5491100000000&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;WhatsApp&quot;},
+  &quot;sheetCsvUrl&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;https://docs.google.com/spreadsheets/d/1g2NkaXTtC2L81SoWL0G6xAQcSevVWGy4dxFXHMcXYxk/export?format=csv&amp;gid=0&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Catálogo (Google Sheets)&quot;},
+  &quot;showDiscountPopup&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Extras&quot;}
+}">
+class Component extends DCLogic {
+  state = {
+    loading: true,
+    products: [],
+    categories: [],
+    testimonialsData: [],
+    faqData: [],
+    phoneModels: {},
+    activeCategory: "Todas",
+    activeBrand: "Todas",
+    loadError: false,
+    imageFallbackIndex: {},
+    faqOpen: null,
+    popupVisible: false,
+    popupDismissed: false,
+    dBrand: "iPhone",
+    dModel: "",
+    uploadedImage: null,
+    rotation: 0,
+    zoom: 1.4,
+    posX: 0,
+    posY: 0,
+    dragging: false,
+    dragOrigin: { x: 0, y: 0 },
+  };
+
+  getSheetUrl(mod) {
+    return (this.props.sheetCsvUrl || (mod && mod.DEFAULT_SHEET_CSV_URL) || "").trim();
+  }
+
+  resolveLocalConfig() {
+    const cfg = (typeof window !== "undefined" && window.MALLORKA_CONFIG) || {};
+    const params = new URLSearchParams(location.search);
+    const sheetParam = params.get("sheet");
+    if (cfg.whatsappNumber) this.props.whatsappNumber = cfg.whatsappNumber;
+    if (cfg.sheetCsvUrl) this.props.sheetCsvUrl = cfg.sheetCsvUrl;
+    if (sheetParam) this.props.sheetCsvUrl = decodeURIComponent(sheetParam);
+  }
+
+  async componentDidMount() {
+    this.resolveLocalConfig();
+    const mod = await import("./catalog-data.js");
+    this.mod = mod;
+    this.setState({
+      testimonialsData: mod.TESTIMONIALS,
+      faqData: mod.FAQS,
+      phoneModels: mod.PHONE_MODELS,
+      dModel: (mod.PHONE_MODELS.iPhone && mod.PHONE_MODELS.iPhone[3]) || "",
+    });
+    await this.loadProducts(mod);
+    const showPopup = this.props.showDiscountPopup !== false;
+    if (showPopup) {
+      setTimeout(() => {
+        if (!this.state.popupDismissed) this.setState({ popupVisible: true });
+      }, 4000);
+    }
+  }
+
+  productMatchesCategory(p, category, mod) {
+    if (category === "Todas") return true;
+    const cats = p.categorias || mod.parseProductCategories(p.categoria);
+    const wanted = category.toLowerCase();
+    return cats.some((c) => c.toLowerCase() === wanted);
+  }
+
+  productMatchesBrand(p, brand) {
+    if (brand === "Todas") return true;
+    const marca = (p.marca || "").toLowerCase();
+    return marca === "todas" || marca === brand.toLowerCase();
+  }
+
+  async loadProducts(mod) {
+    const url = this.getSheetUrl(mod);
+    if (url) {
+      try {
+        const rows = await mod.fetchSheetProducts(url);
+        this.setState({
+          products: rows,
+          categories: mod.deriveCategoriesFromProducts(rows),
+          loading: false,
+          loadError: false,
+        });
+        return;
+      } catch (e) {
+        console.warn("No se pudo leer el Google Sheet.", e);
+        this.setState({
+          products: [],
+          categories: [],
+          loading: false,
+          loadError: true,
+        });
+        return;
+      }
+    }
+    this.setState({
+      products: mod.MOCK_PRODUCTS,
+      categories: mod.CATEGORIES,
+      loading: false,
+      loadError: false,
+    });
+  }
+
+  reloadCatalog = async () => {
+    if (!this.mod) return;
+    this.setState({ loading: true, loadError: false, products: [], categories: [], imageFallbackIndex: {} });
+    await this.loadProducts(this.mod);
+  };
+
+  onProductImageError = (nombre) => {
+    this.setState((s) => ({
+      imageFallbackIndex: { ...s.imageFallbackIndex, [nombre]: (s.imageFallbackIndex[nombre] || 0) + 1 },
+    }));
+  };
+
+  waLink(message) {
+    const number = (this.props.whatsappNumber || "5491100000000").replace(/[^0-9]/g, "");
+    return "https://wa.me/" + number + "?text=" + encodeURIComponent(message);
+  }
+
+  formatPrice(n) {
+    return "$" + Number(n || 0).toLocaleString("es-AR");
+  }
+
+  setCategory = (cat) => this.setState({ activeCategory: cat });
+  onBrandFilterChange = (e) => this.setState({ activeBrand: e.target.value });
+  toggleFaq = (i) => this.setState((s) => ({ faqOpen: s.faqOpen === i ? null : i }));
+  dismissPopup = () => this.setState({ popupVisible: false, popupDismissed: true });
+
+  setDesignerBrand = (brand) => {
+    const models = (this.state.phoneModels && this.state.phoneModels[brand]) || [];
+    this.setState({ dBrand: brand, dModel: models[0] || "" });
+  };
+  onModelChange = (e) => this.setState({ dModel: e.target.value });
+
+  onFileChange = (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.setState({ uploadedImage: reader.result, rotation: 0, zoom: 1.4, posX: 0, posY: 0 });
+    };
+    reader.readAsDataURL(file);
+  };
+
+  onPointerDown = (e) => {
+    e.preventDefault();
+    this.setState({ dragging: true, dragOrigin: { x: e.clientX - this.state.posX, y: e.clientY - this.state.posY } });
+  };
+  onPointerMove = (e) => {
+    if (!this.state.dragging) return;
+    this.setState({ posX: e.clientX - this.state.dragOrigin.x, posY: e.clientY - this.state.dragOrigin.y });
+  };
+  onPointerUp = () => this.state.dragging && this.setState({ dragging: false });
+  onZoomChange = (e) => this.setState({ zoom: Number(e.target.value) });
+  onRotationChange = (e) => this.setState({ rotation: Number(e.target.value) });
+  resetDesigner = () => this.setState({ rotation: 0, zoom: 1.4, posX: 0, posY: 0 });
+
+  renderVals() {
+    const s = this.state;
+    const coral = "oklch(68% 0.16 25)";
+    const coralDeep = "oklch(58% 0.17 25)";
+    const teal = "oklch(68% 0.13 190)";
+    const tealDeep = "oklch(58% 0.13 190)";
+
+    const mod = this.mod || {
+      isProductActive: (v) => String(v ?? "true").toLowerCase() !== "false",
+      parseProductCategories: (c) => String(c || "").split(",").map((x) => x.trim()).filter(Boolean),
+    };
+    const filteredProducts = s.products.filter(
+      (p) =>
+        mod.isProductActive(p.activo) &&
+        this.productMatchesCategory(p, s.activeCategory, mod) &&
+        this.productMatchesBrand(p, s.activeBrand)
+    );
+
+    const categoryNames = new Set();
+    for (const p of s.products) {
+      for (const c of p.categorias || mod.parseProductCategories(p.categoria)) categoryNames.add(c);
+    }
+    const distinctCategories = ["Todas", ...[...categoryNames].sort()];
+    const distinctBrands = ["Todas", "iPhone", "Samsung", "Motorola", "Xiaomi"];
+
+    const categoryFilters = distinctCategories.map((c) => ({
+      label: c,
+      onSelect: () => this.setCategory(c),
+      style: {
+        padding: "9px 16px",
+        borderRadius: "20px",
+        border: "1px solid " + (s.activeCategory === c ? coralDeep : "oklch(85% 0.01 75)"),
+        background: s.activeCategory === c ? coralDeep : "#fff",
+        color: s.activeCategory === c ? "#fff" : "oklch(30% 0.01 75)",
+        fontSize: "13px",
+        fontWeight: 600,
+        cursor: "pointer",
+        fontFamily: "Inter, sans-serif",
+      },
+    }));
+
+    const categoriesWithStyle = s.categories.map((cat, i) => ({
+      name: cat.name,
+      onSelect: (e) => { e.preventDefault(); this.setCategory(cat.name); document.getElementById("catalogo").scrollIntoView({ behavior: "smooth" }); },
+      cardStyle: {
+        display: "block",
+        padding: "28px 20px",
+        borderRadius: "16px",
+        background: i % 2 === 0 ? "oklch(94% 0.03 25)" : "oklch(94% 0.03 190)",
+        color: i % 2 === 0 ? coralDeep : tealDeep,
+      },
+    }));
+
+    const brandOptions = ["iPhone", "Samsung", "Motorola", "Xiaomi"].map((b) => ({
+      name: b,
+      onSelect: () => this.setDesignerBrand(b),
+      style: {
+        padding: "10px 18px",
+        borderRadius: "8px",
+        border: "1px solid " + (s.dBrand === b ? coralDeep : "oklch(85% 0.01 75)"),
+        background: s.dBrand === b ? coralDeep : "#fff",
+        color: s.dBrand === b ? "#fff" : "oklch(30% 0.01 75)",
+        fontSize: "14px",
+        fontWeight: 600,
+        cursor: "pointer",
+        fontFamily: "Inter, sans-serif",
+      },
+    }));
+
+    const faqs = s.faqData.map((f, i) => ({
+      q: f.q,
+      a: f.a,
+      open: s.faqOpen === i,
+      icon: s.faqOpen === i ? "–" : "+",
+      onToggle: () => this.toggleFaq(i),
+    }));
+
+    const hasUploadedImage = !!s.uploadedImage;
+
+    return {
+      waGeneralLink: this.waLink("Hola! Quiero hacer una consulta sobre las fundas Mallorka."),
+      loading: s.loading,
+      loadError: s.loadError,
+      reloadCatalog: this.reloadCatalog,
+      showCategoriesSection: !s.loading && !s.loadError && s.categories.length > 0,
+      showEmptyState: !s.loading && !s.loadError && filteredProducts.length === 0,
+      filteredProducts: filteredProducts.map((p) => {
+        const imageSource = p.imagen_raw || p.imagen_url || "";
+        const fallbacks = mod.getDriveImageFallbacks ? mod.getDriveImageFallbacks(imageSource) : (imageSource ? [imageSource] : []);
+        const fbIdx = s.imageFallbackIndex[p.nombre] || 0;
+        const imagenUrl = fallbacks[Math.min(fbIdx, Math.max(fallbacks.length - 1, 0))] || "";
+        const hasImage = !!imagenUrl;
+        return {
+          nombre: p.nombre,
+          marca: p.marca === "todas" ? "Todas las marcas" : p.marca,
+          precioFmt: this.formatPrice(p.precio),
+          hasImage,
+          imagenUrl,
+          onImageError: () => this.onProductImageError(p.nombre),
+          showPlaceholderLabel: !hasImage,
+          waLink: this.waLink(
+            p.marca === "todas"
+              ? 'Hola! Quiero pedir la funda "' + p.nombre + '" (' + this.formatPrice(p.precio) + ")."
+              : 'Hola! Quiero pedir la funda "' + p.nombre + '" para ' + p.marca + " (" + this.formatPrice(p.precio) + ")."
+          ),
+          imgWrapStyle: {
+            overflow: "hidden",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: hasImage ? "auto" : "180px",
+            padding: hasImage ? "12px" : "0",
+            background: hasImage
+              ? "oklch(96% 0.01 75)"
+              : "repeating-linear-gradient(135deg, " + coral + " 0px 16px, " + teal + " 16px 32px)",
+          },
+          imgStyle: {
+            width: "100%",
+            height: "auto",
+            maxHeight: "420px",
+            objectFit: "contain",
+            display: "block",
+          },
+        };
+      }),
+      categoryFilters,
+      brandFilters: distinctBrands,
+      onBrandFilterChange: this.onBrandFilterChange,
+      categoriesWithStyle,
+      brandOptions,
+      modelOptions: (s.phoneModels && s.phoneModels[s.dBrand]) || [],
+      dModel: s.dModel,
+      onModelChange: this.onModelChange,
+      dBrand: s.dBrand,
+      uploadLabel: hasUploadedImage ? "Cambiar foto" : "Subir foto",
+      onFileChange: this.onFileChange,
+      hasUploadedImage,
+      uploadedImage: s.uploadedImage,
+      zoom: s.zoom,
+      rotation: s.rotation,
+      onZoomChange: this.onZoomChange,
+      onRotationChange: this.onRotationChange,
+      resetDesigner: this.resetDesigner,
+      onPointerDown: this.onPointerDown,
+      onPointerMove: this.onPointerMove,
+      onPointerUp: this.onPointerUp,
+      imageStyle: {
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        width: "100%",
+        height: "100%",
+        backgroundImage: s.uploadedImage ? "url(" + s.uploadedImage + ")" : "none",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        transform:
+          "translate(-50%,-50%) translate(" + s.posX + "px, " + s.posY + "px) rotate(" + s.rotation + "deg) scale(" + s.zoom + ")",
+        cursor: s.dragging ? "grabbing" : "grab",
+        touchAction: "none",
+      },
+      designerWaLink: this.waLink(
+        "Hola! Quiero pedir una funda personalizada para " + s.dBrand + " " + s.dModel + ". Ya armé el diseño en la web con mi foto, te la mando por acá."
+      ),
+      designerCtaStyle: {
+        textAlign: "center",
+        background: hasUploadedImage ? coralDeep : "oklch(80% 0.01 75)",
+        color: "#fff",
+        padding: "16px",
+        borderRadius: "10px",
+        fontWeight: 600,
+        fontSize: "15px",
+        pointerEvents: hasUploadedImage ? "auto" : "none",
+      },
+      testimonials: s.testimonialsData,
+      faqs,
+      popupVisible: s.popupVisible,
+      dismissPopup: this.dismissPopup,
+    };
+  }
+}
+
+</script>
+</body>
+</html>
