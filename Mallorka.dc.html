@@ -8,20 +8,67 @@
 <body>
 <x-dc>
 <helmet>
+  <title>Mallorka | Fundas de celular personalizadas con tu foto</title>
+  <link rel="icon" type="image/png" href="./uploads/favicon.png">
+  <link rel="apple-touch-icon" href="./uploads/favicon.png">
+  <meta name="description" content="Fundas personalizadas para iPhone, Samsung, Motorola y Xiaomi. Subí tu foto, elegí tu modelo y pedila por WhatsApp. Envío gratis en CABA y retiro en Villa Real o Villa Crespo.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="author" content="Mallorka">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="geo.region" content="AR-C">
+  <meta name="geo.placename" content="Ciudad Autónoma de Buenos Aires">
+  <link rel="canonical" href="https://mallorkafundas.com.ar/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mallorka">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:title" content="Mallorka | Fundas de celular personalizadas con tu foto">
+  <meta property="og:description" content="Subí tu foto, elegí tu modelo y recibí tu funda. Envío gratis en CABA y dos puntos de retiro.">
+  <meta property="og:url" content="https://mallorkafundas.com.ar/">
+  <meta property="og:image" content="https://mallorkafundas.com.ar/uploads/mallorka_logo.jpeg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mallorka | Fundas de celular personalizadas">
+  <meta name="twitter:description" content="Fundas con tu foto para iPhone, Samsung, Motorola y Xiaomi. Envío gratis en CABA.">
+  <meta name="twitter:image" content="https://mallorkafundas.com.ar/uploads/mallorka_logo.jpeg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "Mallorka",
+    "description": "Fundas de celular personalizadas con tu foto para iPhone, Samsung, Motorola y Xiaomi.",
+    "url": "https://mallorkafundas.com.ar/",
+    "image": "https://mallorkafundas.com.ar/uploads/mallorka_logo.jpeg",
+    "email": "mallorka.fundas@gmail.com",
+    "telephone": "+5491126622513",
+    "areaServed": "AR",
+    "sameAs": ["https://instagram.com/mallorka.fundas"],
+    "location": [
+      { "@type": "Place", "name": "Punto de retiro Villa Real", "address": { "@type": "PostalAddress", "streetAddress": "Víctor Hugo 2220", "addressLocality": "Villa Real, CABA", "addressCountry": "AR" } },
+      { "@type": "Place", "name": "Punto de retiro Villa Crespo", "address": { "@type": "PostalAddress", "streetAddress": "Av. Corrientes 6116", "addressLocality": "Villa Crespo, CABA", "addressCountry": "AR" } }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://drive.google.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Poppins:wght@600;700;800&amp;display=swap" rel="stylesheet">
   <style>
-    body { margin: 0; font-family: 'Inter', sans-serif; }
-    a { color: oklch(58% 0.17 25); text-decoration: none; }
-    a:hover { color: oklch(48% 0.17 25); }
-    input[type="range"] { accent-color: oklch(60% 0.16 25); }
+    body { margin: 0; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    *, *::before, *::after { box-sizing: border-box; }
+    img { max-width: 100%; }
+    :focus-visible { outline: 2px solid oklch(64% 0.2 25); outline-offset: 2px; border-radius: 4px; }
+    select { min-height: 46px; }
+    @media (max-width: 600px) { select, input, textarea, button { font-size: 16px !important; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+    a { color: oklch(64% 0.2 25); text-decoration: none; }
+    a:hover { color: oklch(78% 0.14 25); }
+    input[type="range"] { accent-color: oklch(64% 0.2 25); }
     @keyframes mk-pop-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
     .mk-hero-copy { max-width: 640px; }
     .mk-hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
     .mk-hero-actions a { box-sizing: border-box; }
     .mk-hero-inner { display: flex; align-items: center; gap: 60px; }
     .mk-hero-logo { flex: 0 0 380px; }
-    .mk-hero-logo img { width: 100%; display: block; }
+    .mk-hero-logo img { width: 100%; height: auto; display: block; mix-blend-mode: lighten; }
     @media (max-width: 1100px) { .mk-hero-logo { flex: 0 0 260px; } }
     @media (max-width: 700px) { .mk-hero-inner { flex-direction: column; gap: 0; } .mk-hero-title-row { display: flex; align-items: center; gap: 12px; } .mk-hero-logo { flex: 0 0 130px; flex-shrink: 0; } .mk-hero-copy { min-width: 0 !important; } .mk-hero-logo--side { display: none !important; } .mk-hero-logo--inline { display: block !important; } }
     .mk-catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 24px; }
@@ -36,11 +83,12 @@
       .mk-hero { padding: 48px 20px 56px !important; }
       .mk-hero-title { font-size: 38px !important; }
       .mk-hero-copy { max-width: none !important; }
-      .mk-trust { padding: 20px !important; gap: 16px !important; flex-direction: column; align-items: flex-start !important; }
+      .mk-trust { padding: 28px 20px !important; gap: 14px !important; flex-direction: column; align-items: flex-start !important; }
+      .mk-trust > div { border-left: none !important; padding: 0 !important; }
       .mk-designer-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
       .mk-designer-preview { position: static !important; }
-      .mk-footer { padding: 40px 20px !important; }
-      .mk-footer-inner { flex-direction: column !important; }
+      .mk-footer { padding: 44px 20px !important; }
+      .mk-footer-inner { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
       .mk-catalog-section { border-radius: 16px !important; }
       h2 { font-size: 26px !important; }
     }
@@ -60,41 +108,41 @@
       .mk-catalog-filters { flex-direction: column; gap: 16px !important; }
       .mk-model-select { max-width: none !important; }
       .mk-designer-cta { width: 100% !important; display: block !important; }
-      .mk-trust { padding: 16px !important; }
+      .mk-trust { padding: 24px 16px !important; }
+      .mk-footer-inner { grid-template-columns: 1fr !important; gap: 28px !important; }
+      .mk-trust > div { border-left: none !important; padding: 0 !important; }
       h2 { font-size: 24px !important; }
     }
   </style>
 </helmet>
 
-<div style="background:oklch(98% 0.01 75);color:oklch(22% 0.015 75);min-height:100vh;">
+<div style="background:oklch(11% 0.006 75);color:oklch(94% 0.005 75);min-height:100vh;">
 
   <!-- HEADER -->
-  <header class="mk-header" style="position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:16px 40px;background:oklch(98% 0.01 75 / 0.92);backdrop-filter:blur(8px);border-bottom:1px solid oklch(90% 0.01 75);">
-    <div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:24px;letter-spacing:-0.02em;color:oklch(58% 0.17 25);">Mallorka</div>
+  <header class="mk-header" style="position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:16px 40px;background:oklch(10% 0.006 75 / 0.9);backdrop-filter:blur(8px);border-bottom:1px solid oklch(24% 0.008 75);">
+    <img src="./uploads/mallorka_logo.jpeg" alt="Mallorka" width="673" height="536" fetchpriority="high" style="height:64px;width:auto;display:block;mix-blend-mode:lighten;margin:-10px 0;">
     <nav class="mk-nav-links" style="display:flex;gap:28px;align-items:center;">
-      <a href="#catalogo" style="font-size:15px;font-weight:500;color:oklch(22% 0.015 75);">Catálogo</a>
-      <a href="#disenador" style="font-size:15px;font-weight:500;color:oklch(22% 0.015 75);">Diseñá tu funda</a>
-      <a href="#testimonios" style="font-size:15px;font-weight:500;color:oklch(22% 0.015 75);">Testimonios</a>
-      <a href="#faq" style="font-size:15px;font-weight:500;color:oklch(22% 0.015 75);">Preguntas</a>
-      <a href="{{ waGeneralLink }}" target="_blank" style="background:oklch(58% 0.17 25);color:#fff;padding:10px 18px;border-radius:8px;font-weight:600;font-size:14px;">Escribinos</a>
+      <a href="#catalogo" style="display:inline-flex;align-items:center;min-height:44px;padding:0 2px;font-size:15px;font-weight:500;color:oklch(94% 0.005 75);">Catálogo</a>
+      <a href="#disenador" style="display:inline-flex;align-items:center;min-height:44px;padding:0 2px;font-size:15px;font-weight:500;color:oklch(94% 0.005 75);">Diseñá tu funda</a>
+      <a href="#faq" style="display:inline-flex;align-items:center;min-height:44px;padding:0 2px;font-size:15px;font-weight:500;color:oklch(94% 0.005 75);">Preguntas</a>
+      <a href="{{ waGeneralLink }}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;min-height:44px;background:oklch(64% 0.2 25);color:#fff;padding:12px 20px;border-radius:8px;font-weight:600;font-size:14px;">Escribinos</a>
     </nav>
     <div class="mk-mobile-nav" style="display:none;align-items:center;gap:10px;">
-      <a href="{{ waGeneralLink }}" target="_blank" style="background:oklch(58% 0.17 25);color:#fff;padding:9px 16px;border-radius:8px;font-weight:600;font-size:13px;">Escribinos</a>
-      <button onClick="{{ toggleMobileMenu }}" aria-label="Menú" style="width:38px;height:38px;border-radius:8px;border:1px solid oklch(85% 0.01 75);background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;">
+      <a href="{{ waGeneralLink }}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;min-height:44px;background:oklch(64% 0.2 25);color:#fff;padding:11px 16px;border-radius:8px;font-weight:600;font-size:13px;">Escribinos</a>
+      <button onClick="{{ toggleMobileMenu }}" aria-label="Menú" aria-expanded="{{ mobileMenuOpen }}" aria-controls="mk-mobile-menu" style="width:44px;height:44px;border-radius:8px;border:1px solid oklch(31% 0.008 75);background:oklch(18% 0.008 75);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;">
         <div style="display:flex;flex-direction:column;gap:4px;">
-          <span style="width:16px;height:2px;background:oklch(22% 0.015 75);border-radius:1px;"></span>
-          <span style="width:16px;height:2px;background:oklch(22% 0.015 75);border-radius:1px;"></span>
-          <span style="width:16px;height:2px;background:oklch(22% 0.015 75);border-radius:1px;"></span>
+          <span style="width:16px;height:2px;background:oklch(94% 0.005 75);border-radius:1px;"></span>
+          <span style="width:16px;height:2px;background:oklch(94% 0.005 75);border-radius:1px;"></span>
+          <span style="width:16px;height:2px;background:oklch(94% 0.005 75);border-radius:1px;"></span>
         </div>
       </button>
     </div>
   </header>
   <sc-if value="{{ mobileMenuOpen }}">
-    <div class="mk-mobile-menu" style="display:none;flex-direction:column;padding:8px 16px 16px;background:oklch(98% 0.01 75 / 0.98);backdrop-filter:blur(8px);border-bottom:1px solid oklch(90% 0.01 75);position:sticky;top:62px;z-index:39;">
-      <a href="#catalogo" onClick="{{ closeMobileMenu }}" style="padding:12px 4px;font-size:15px;font-weight:500;color:oklch(22% 0.015 75);border-bottom:1px solid oklch(92% 0.01 75);">Catálogo</a>
-      <a href="#disenador" onClick="{{ closeMobileMenu }}" style="padding:12px 4px;font-size:15px;font-weight:500;color:oklch(22% 0.015 75);border-bottom:1px solid oklch(92% 0.01 75);">Diseñá tu funda</a>
-      <a href="#testimonios" onClick="{{ closeMobileMenu }}" style="padding:12px 4px;font-size:15px;font-weight:500;color:oklch(22% 0.015 75);border-bottom:1px solid oklch(92% 0.01 75);">Testimonios</a>
-      <a href="#faq" onClick="{{ closeMobileMenu }}" style="padding:12px 4px;font-size:15px;font-weight:500;color:oklch(22% 0.015 75);">Preguntas</a>
+    <div class="mk-mobile-menu" id="mk-mobile-menu" style="display:none;flex-direction:column;padding:8px 16px 16px;background:oklch(10% 0.006 75 / 0.98);backdrop-filter:blur(8px);border-bottom:1px solid oklch(24% 0.008 75);position:sticky;top:62px;z-index:39;">
+      <a href="#catalogo" onClick="{{ closeMobileMenu }}" style="padding:12px 4px;font-size:15px;font-weight:500;color:oklch(94% 0.005 75);border-bottom:1px solid oklch(24% 0.008 75);">Catálogo</a>
+      <a href="#disenador" onClick="{{ closeMobileMenu }}" style="padding:12px 4px;font-size:15px;font-weight:500;color:oklch(94% 0.005 75);border-bottom:1px solid oklch(24% 0.008 75);">Diseñá tu funda</a>
+      <a href="#faq" onClick="{{ closeMobileMenu }}" style="padding:12px 4px;font-size:15px;font-weight:500;color:oklch(94% 0.005 75);">Preguntas</a>
     </div>
   </sc-if>
 
@@ -103,40 +151,35 @@
     <div class="mk-hero-inner">
     <div class="mk-hero-copy" style="flex:1;min-width:260px;">
       <div class="mk-hero-title-row">
-      <h1 class="mk-hero-title" style="font-family:'Poppins',sans-serif;font-size:52px;font-weight:800;line-height:1.05;margin:0 0 20px;letter-spacing:-0.02em;">Tu foto.<br>Tu funda.<br><span style="color:oklch(58% 0.17 25);">Tu estilo.</span></h1>
+      <h1 class="mk-hero-title" style="font-family:'Poppins',sans-serif;font-size:52px;font-weight:800;line-height:1.05;margin:0 0 20px;letter-spacing:-0.02em;">Tu foto.<br>Tu funda.<br><span style="color:oklch(64% 0.2 25);">Tu estilo.</span></h1>
       <div class="mk-hero-logo mk-hero-logo--inline" style="display:none;">
-        <img src="./uploads/Logo-Png.png" alt="Mallorka">
+        <img src="./uploads/mallorka_isologo.jpeg" alt="Mallorka" width="1254" height="1254" fetchpriority="high" decoding="async">
       </div>
       </div>
-      <p style="font-size:18px;line-height:1.6;color:oklch(45% 0.01 75);margin:0 0 32px;">Subí una foto, ajustala con zoom y rotación hasta que quede perfecta, y elegí el modelo exacto de tu celular. O buscá algo listo en el catálogo.</p>
+      <p style="font-size:18px;line-height:1.6;color:oklch(72% 0.008 75);margin:0 0 32px;">Subí tu foto, elegí tu modelo y listo. O buscá un diseño en el catálogo.</p>
+      <div style="display:inline-flex;align-items:center;gap:10px;margin:0 0 24px;padding:9px 16px;border-radius:999px;border:1px solid oklch(34% 0.06 25);background:oklch(20% 0.03 25);font-size:14px;font-weight:600;color:oklch(85% 0.06 25);">
+        <span style="width:7px;height:7px;border-radius:50%;background:oklch(64% 0.2 25);"></span>Envío gratis en CABA · retiro en Villa Real o Villa Crespo
+      </div>
       <div class="mk-hero-actions">
-        <a href="#disenador" style="background:oklch(58% 0.17 25);color:#fff;padding:16px 28px;border-radius:10px;font-weight:600;font-size:16px;">Diseñá tu funda</a>
-        <a href="#catalogo" style="background:#fff;color:oklch(22% 0.015 75);padding:16px 28px;border-radius:10px;font-weight:600;font-size:16px;border:1px solid oklch(85% 0.01 75);">Ver catálogo</a>
+        <a href="#disenador" style="background:oklch(64% 0.2 25);color:#fff;padding:16px 28px;border-radius:10px;font-weight:600;font-size:16px;">Diseñá tu funda</a>
+        <a href="#catalogo" style="background:oklch(18% 0.008 75);color:oklch(94% 0.005 75);padding:16px 28px;border-radius:10px;font-weight:600;font-size:16px;border:1px solid oklch(31% 0.008 75);">Ver catálogo</a>
       </div>
     </div>
     <div class="mk-hero-logo mk-hero-logo--side">
-      <img src="./uploads/Logo-Png.png" alt="Mallorka">
+      <img src="./uploads/mallorka_isologo.jpeg" alt="Mallorka" width="1254" height="1254" fetchpriority="high" decoding="async">
     </div>
     </div>
-  </section>
-
-  <!-- TRUST STRIP -->
-  <section class="mk-trust" style="display:flex;justify-content:center;gap:56px;flex-wrap:wrap;padding:28px 40px;background:#fff;border-top:1px solid oklch(90% 0.01 75);border-bottom:1px solid oklch(90% 0.01 75);">
-    <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:oklch(45% 0.01 75);"><span style="width:8px;height:8px;border-radius:50%;background:oklch(58% 0.17 25);"></span>Hecha a pedido</div>
-    <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:oklch(45% 0.01 75);"><span style="width:8px;height:8px;border-radius:50%;background:oklch(58% 0.13 190);"></span>Envíos a todo el país</div>
-    <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:oklch(45% 0.01 75);"><span style="width:8px;height:8px;border-radius:50%;background:oklch(58% 0.17 25);"></span>iPhone · Samsung · Motorola · Xiaomi</div>
-    <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:oklch(45% 0.01 75);"><span style="width:8px;height:8px;border-radius:50%;background:oklch(58% 0.13 190);"></span>Coordinás todo por WhatsApp</div>
   </section>
 
   <!-- DESTACADOS -->
   <sc-if value="{{ showFeaturedSection }}">
     <section class="mk-section" style="padding:80px 40px;max-width:1280px;margin:0 auto;">
       <h2 style="font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;margin:0 0 8px;">Productos destacados</h2>
-      <p style="color:oklch(45% 0.01 75);margin:0 0 36px;font-size:16px;">Los diseños que más se piden.</p>
+      <p style="color:oklch(72% 0.008 75);margin:0 0 36px;font-size:16px;">Los diseños que más se piden.</p>
       <div class="mk-catalog-grid">
         <sc-for list="{{ featuredProducts }}" as="p" hint-placeholder-count="4">
-          <div style="background:#fff;border-radius:16px;overflow:hidden;border:1px solid oklch(90% 0.01 75);display:flex;flex-direction:column;position:relative;">
-            <span style="position:absolute;top:10px;left:10px;background:oklch(58% 0.17 25);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;z-index:1;">Destacado</span>
+          <div style="background:oklch(18% 0.008 75);border-radius:16px;overflow:hidden;border:1px solid oklch(24% 0.008 75);display:flex;flex-direction:column;position:relative;">
+            <span style="position:absolute;top:10px;left:10px;background:oklch(64% 0.2 25);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;z-index:1;">Destacado</span>
             <div style="{{ p.imgWrapStyle }}">
               <sc-if value="{{ p.hasImage }}">
                 <img src="{{ p.imagenUrl }}" alt="{{ p.nombre }}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onError="{{ p.onImageError }}" style="{{ p.imgStyle }}">
@@ -146,10 +189,10 @@
               </sc-if>
             </div>
             <div style="padding:16px;display:flex;flex-direction:column;gap:8px;flex:1;">
-              <div style="font-size:11px;font-weight:600;color:oklch(45% 0.01 75);text-transform:uppercase;letter-spacing:0.04em;">{{ p.marca }}</div>
+              <div style="font-size:11px;font-weight:600;color:oklch(72% 0.008 75);text-transform:uppercase;letter-spacing:0.04em;">{{ p.marca }}</div>
               <div style="font-weight:600;font-size:16px;">{{ p.nombre }}</div>
-              <div style="font-weight:700;font-size:18px;color:oklch(58% 0.17 25);">{{ p.precioFmt }}</div>
-              <a href="{{ p.waLink }}" target="_blank" style="margin-top:8px;text-align:center;background:oklch(22% 0.015 75);color:#fff;padding:10px;border-radius:8px;font-weight:600;font-size:14px;">Pedir por WhatsApp</a>
+              <div style="font-weight:700;font-size:18px;color:oklch(64% 0.2 25);">{{ p.precioFmt }}</div>
+              <a href="{{ p.waLink }}" target="_blank" rel="noopener noreferrer" style="margin-top:8px;text-align:center;background:oklch(95% 0.005 75);color:oklch(14% 0.01 75);padding:14px 10px;border-radius:8px;font-weight:600;font-size:14px;">Pedir por WhatsApp</a>
             </div>
           </div>
         </sc-for>
@@ -161,7 +204,7 @@
   <sc-if value="{{ showCategoriesSection }}">
     <section class="mk-section" style="padding:80px 40px;max-width:1280px;margin:0 auto;">
       <h2 style="font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;margin:0 0 8px;">Elegí tu temática</h2>
-      <p style="color:oklch(45% 0.01 75);margin:0 0 36px;font-size:16px;">Explorá el catálogo por estilo.</p>
+      <p style="color:oklch(72% 0.008 75);margin:0 0 36px;font-size:16px;">Explorá el catálogo por estilo.</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));gap:16px;">
         <sc-for list="{{ categoriesWithStyle }}" as="cat" hint-placeholder-count="6">
           <a href="#catalogo" onClick="{{ cat.onSelect }}" style="{{ cat.cardStyle }}">
@@ -173,9 +216,9 @@
   </sc-if>
 
   <!-- CATALOGO -->
-  <section id="catalogo" class="mk-section mk-catalog-section" style="padding:80px 40px;max-width:1280px;margin:0 auto;background:oklch(96% 0.012 75);border-radius:24px;">
+  <section id="catalogo" class="mk-section mk-catalog-section" style="padding:80px 40px;max-width:1280px;margin:0 auto;background:oklch(15% 0.008 75);border-radius:24px;">
     <h2 style="font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;margin:0 0 8px;">Catálogo</h2>
-    <p style="color:oklch(45% 0.01 75);margin:0 0 28px;font-size:16px;">Diseños listos para pedir.</p>
+    <p style="color:oklch(72% 0.008 75);margin:0 0 28px;font-size:16px;">Diseños listos para pedir.</p>
 
     <div class="mk-catalog-filters">
       <div style="display:flex;gap:8px;flex-wrap:wrap;flex:1;">
@@ -183,32 +226,32 @@
           <button onClick="{{ f.onSelect }}" style="{{ f.style }}">{{ f.label }}</button>
         </sc-for>
       </div>
-      <select onChange="{{ onBrandFilterChange }}" style="padding:10px 14px;border-radius:8px;border:1px solid oklch(85% 0.01 75);font-size:14px;font-family:'Inter',sans-serif;background:#fff;width:100%;max-width:220px;box-sizing:border-box;">
+      <select onChange="{{ onBrandFilterChange }}" style="padding:12px 14px;border-radius:8px;border:1px solid oklch(31% 0.008 75);font-size:14px;font-family:'Inter',sans-serif;background:oklch(18% 0.008 75);color:oklch(94% 0.005 75);width:100%;max-width:220px;box-sizing:border-box;">
         <sc-for list="{{ brandFilters }}" as="b" hint-placeholder-count="4">
-          <option value="{{ b }}">{{ b }}</option>
+          <option value="{{ b.value }}">{{ b.label }}</option>
         </sc-for>
       </select>
     </div>
 
     <sc-if value="{{ loading }}" hint-placeholder-val="{{ true }}">
-      <p style="color:oklch(45% 0.01 75);font-size:15px;">Cargando catálogo…</p>
+      <p style="color:oklch(72% 0.008 75);font-size:15px;">Cargando catálogo…</p>
     </sc-if>
 
     <sc-if value="{{ loadError }}">
-      <div style="background:#fff;border:1px solid oklch(90% 0.01 75);border-radius:12px;padding:20px;margin-bottom:24px;">
-        <p style="color:oklch(45% 0.01 75);font-size:15px;margin:0 0 12px;">No pudimos cargar el catálogo. Puede ser la conexión del celular. Probá de nuevo.</p>
-        <button onClick="{{ reloadCatalog }}" style="background:oklch(58% 0.17 25);color:#fff;border:none;padding:10px 18px;border-radius:8px;font-weight:600;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Reintentar</button>
+      <div style="background:oklch(18% 0.008 75);border:1px solid oklch(24% 0.008 75);border-radius:12px;padding:20px;margin-bottom:24px;">
+        <p style="color:oklch(72% 0.008 75);font-size:15px;margin:0 0 12px;">No pudimos cargar el catálogo. Puede ser la conexión del celular. Probá de nuevo.</p>
+        <button onClick="{{ reloadCatalog }}" style="background:oklch(64% 0.2 25);color:#fff;border:none;padding:10px 18px;border-radius:8px;font-weight:600;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Reintentar</button>
       </div>
     </sc-if>
 
     <sc-if value="{{ showEmptyState }}">
-      <p style="color:oklch(45% 0.01 75);font-size:15px;">No hay diseños que coincidan con ese filtro.</p>
+      <p style="color:oklch(72% 0.008 75);font-size:15px;">No hay diseños que coincidan con ese filtro.</p>
     </sc-if>
 
     <sc-if value="{{ !loading &amp;&amp; !loadError }}">
     <div class="mk-catalog-grid">
       <sc-for list="{{ filteredProducts }}" as="p" hint-placeholder-count="8">
-        <div style="background:#fff;border-radius:16px;overflow:hidden;border:1px solid oklch(90% 0.01 75);display:flex;flex-direction:column;">
+        <div style="background:oklch(18% 0.008 75);border-radius:16px;overflow:hidden;border:1px solid oklch(24% 0.008 75);display:flex;flex-direction:column;">
           <div style="{{ p.imgWrapStyle }}">
             <sc-if value="{{ p.hasImage }}">
               <img src="{{ p.imagenUrl }}" alt="{{ p.nombre }}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onError="{{ p.onImageError }}" style="{{ p.imgStyle }}">
@@ -218,10 +261,10 @@
             </sc-if>
           </div>
           <div style="padding:16px;display:flex;flex-direction:column;gap:8px;flex:1;">
-            <div style="font-size:11px;font-weight:600;color:oklch(45% 0.01 75);text-transform:uppercase;letter-spacing:0.04em;">{{ p.marca }}</div>
+            <div style="font-size:11px;font-weight:600;color:oklch(72% 0.008 75);text-transform:uppercase;letter-spacing:0.04em;">{{ p.marca }}</div>
             <div style="font-weight:600;font-size:16px;">{{ p.nombre }}</div>
-            <div style="font-weight:700;font-size:18px;color:oklch(58% 0.17 25);">{{ p.precioFmt }}</div>
-            <a href="{{ p.waLink }}" target="_blank" style="margin-top:8px;text-align:center;background:oklch(22% 0.015 75);color:#fff;padding:10px;border-radius:8px;font-weight:600;font-size:14px;">Pedir por WhatsApp</a>
+            <div style="font-weight:700;font-size:18px;color:oklch(64% 0.2 25);">{{ p.precioFmt }}</div>
+            <a href="{{ p.waLink }}" target="_blank" rel="noopener noreferrer" style="margin-top:8px;text-align:center;background:oklch(95% 0.005 75);color:oklch(14% 0.01 75);padding:14px 10px;border-radius:8px;font-weight:600;font-size:14px;">Pedir por WhatsApp</a>
           </div>
         </div>
       </sc-for>
@@ -232,7 +275,7 @@
   <!-- DISEÑADOR -->
   <section id="disenador" class="mk-section" style="padding:80px 40px;max-width:1280px;margin:0 auto;">
     <h2 style="font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;margin:0 0 8px;">Diseñá tu funda</h2>
-    <p style="color:oklch(45% 0.01 75);margin:0 0 36px;font-size:16px;max-width:600px;">Elegí tu celular, subí tu foto y ajustala con zoom y rotación hasta que encaje perfecto.</p>
+    <p style="color:oklch(72% 0.008 75);margin:0 0 36px;font-size:16px;max-width:600px;">Elegí tu celular, subí tu foto y ajustala con zoom y rotación hasta que encaje perfecto.</p>
 
     <div class="mk-designer-grid" style="display:grid;grid-template-columns:1fr 320px;gap:56px;align-items:start;">
       <div style="display:flex;flex-direction:column;gap:28px;">
@@ -247,16 +290,27 @@
 
         <div>
           <div style="font-weight:600;font-size:14px;margin-bottom:10px;">2. Modelo</div>
-          <select onChange="{{ onModelChange }}" value="{{ dModel }}" class="mk-model-select" style="padding:12px 14px;border-radius:8px;border:1px solid oklch(85% 0.01 75);font-size:14px;font-family:'Inter',sans-serif;background:#fff;">
+          <select onChange="{{ onModelChange }}" value="{{ dModel }}" class="mk-model-select" style="padding:12px 14px;border-radius:8px;border:1px solid oklch(31% 0.008 75);font-size:14px;font-family:'Inter',sans-serif;background:oklch(18% 0.008 75);color:oklch(94% 0.005 75);">
             <sc-for list="{{ modelOptions }}" as="m" hint-placeholder-count="4">
               <option value="{{ m }}">{{ m }}</option>
             </sc-for>
           </select>
         </div>
 
+        <sc-if value="{{ showCaseColor }}">
+          <div>
+            <div style="font-weight:600;font-size:14px;margin-bottom:10px;">Color de la funda</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <sc-for list="{{ caseColorOptions }}" as="col" hint-placeholder-count="2">
+                <button onClick="{{ col.onSelect }}" style="{{ col.style }}">{{ col.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
         <div>
           <div style="font-weight:600;font-size:14px;margin-bottom:10px;">3. Tu foto</div>
-          <label style="display:inline-block;cursor:pointer;background:oklch(22% 0.015 75);color:#fff;padding:12px 22px;border-radius:8px;font-weight:600;font-size:14px;">
+          <label style="display:inline-block;cursor:pointer;background:oklch(95% 0.005 75);color:oklch(14% 0.01 75);padding:12px 22px;border-radius:8px;font-weight:600;font-size:14px;">
             {{ uploadLabel }}
             <input type="file" accept="image/*" onChange="{{ onFileChange }}" style="display:none;">
           </label>
@@ -265,51 +319,52 @@
         <sc-if value="{{ hasUploadedImage }}">
           <div style="display:flex;flex-direction:column;gap:18px;max-width:280px;animation:mk-pop-in 0.3s ease;">
             <div>
-              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:500;color:oklch(45% 0.01 75);margin-bottom:6px;"><span>Zoom</span><span style="font-variant-numeric:tabular-nums;">{{ zoomLabel }}</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:500;color:oklch(72% 0.008 75);margin-bottom:6px;"><span>Zoom</span><span style="font-variant-numeric:tabular-nums;">{{ zoomLabel }}</span></div>
               <input type="range" min="0.5" max="3" step="0.05" value="{{ zoom }}" onChange="{{ onZoomChange }}" style="width:100%;">
             </div>
             <div>
-              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:500;color:oklch(45% 0.01 75);margin-bottom:6px;"><span>Rotación</span><span style="font-variant-numeric:tabular-nums;">{{ rotationLabel }}</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:500;color:oklch(72% 0.008 75);margin-bottom:6px;"><span>Rotación</span><span style="font-variant-numeric:tabular-nums;">{{ rotationLabel }}</span></div>
               <input type="range" min="-180" max="180" step="1" value="{{ rotation }}" onChange="{{ onRotationChange }}" style="width:100%;">
             </div>
-            <p style="font-size:12px;color:oklch(55% 0.01 75);margin:0;">Tip: arrastrá la foto dentro de la funda para reacomodarla.</p>
-            <button onClick="{{ resetDesigner }}" style="align-self:flex-start;background:none;border:1px solid oklch(85% 0.01 75);padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">Reiniciar ajustes</button>
+            <p style="font-size:12px;color:oklch(62% 0.008 75);margin:0;">Tip: arrastrá la foto dentro de la funda para reacomodarla.</p>
+            <button onClick="{{ resetDesigner }}" style="align-self:flex-start;background:oklch(20% 0.008 75);border:1px solid oklch(34% 0.008 75);color:oklch(92% 0.005 75);font-family:'Inter',sans-serif;padding:9px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">Reiniciar ajustes</button>
           </div>
         </sc-if>
 
-        <a href="{{ designerWaLink }}" target="_blank" class="mk-designer-cta" style="{{ designerCtaStyle }}">Pedir esta funda por WhatsApp</a>
-        <p style="font-size:12px;color:oklch(55% 0.01 75);max-width:320px;margin:-14px 0 0;">Por WhatsApp coordinamos el pedido; adjuntá ahí la misma foto que usaste acá para confirmar el diseño.</p>
+        <a href="{{ designerWaLink }}" target="_blank" rel="noopener noreferrer" class="mk-designer-cta" style="{{ designerCtaStyle }}">Pedir esta funda por WhatsApp</a>
+        <p style="font-size:12px;color:oklch(62% 0.008 75);max-width:320px;margin:-14px 0 0;">Por WhatsApp coordinamos el pedido; adjuntá ahí la misma foto que usaste acá para confirmar el diseño.</p>
       </div>
 
       <div class="mk-designer-preview" style="position:sticky;top:100px;">
-        <div style="position:relative;width:230px;height:460px;margin:0 auto;border-radius:40px;background:#1c1c1c;overflow:hidden;box-shadow:0 30px 50px -14px rgba(0,0,0,0.35);border:3px solid oklch(20% 0.01 75);touch-action:none;" onPointerMove="{{ onPointerMove }}" onPointerUp="{{ onPointerUp }}" onPointerLeave="{{ onPointerUp }}">
+        <div style="{{ mockStyle }}" onPointerMove="{{ onPointerMove }}" onPointerUp="{{ onPointerUp }}" onPointerLeave="{{ onPointerUp }}">
+          <div style="{{ mockInnerStyle }}">
           <sc-if value="{{ hasUploadedImage }}" hint-placeholder-val="{{ false }}">
             <div onPointerDown="{{ onPointerDown }}" style="{{ imageStyle }}"></div>
           </sc-if>
-          <sc-if value="{{ !hasUploadedImage }}">
-            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 24px;background:repeating-linear-gradient(135deg, oklch(30% 0.01 75) 0px 14px, oklch(24% 0.01 75) 14px 28px);">
+          <sc-if value="{{ showGenericPlaceholder }}">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 24px;background:repeating-linear-gradient(135deg, oklch(28% 0.01 75) 0px 14px, oklch(22% 0.01 75) 14px 28px);">
               <span style="font-family:monospace;font-size:12px;color:rgba(255,255,255,0.6);">subí una foto para ver la vista previa</span>
             </div>
           </sc-if>
-          <div style="position:absolute;top:18px;left:18px;width:56px;height:56px;border-radius:16px;background:oklch(20% 0.01 75 / 0.9);pointer-events:none;"></div>
-          <div style="position:absolute;top:30px;left:30px;width:16px;height:16px;border-radius:50%;background:#111;pointer-events:none;"></div>
-          <div style="position:absolute;top:52px;left:30px;width:10px;height:10px;border-radius:50%;background:#333;pointer-events:none;"></div>
+          <sc-if value="{{ showSamsungPlaceholder }}">
+            <div style="position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;text-align:center;padding:0 24px 60px;background:#fff;">
+              <span style="font-family:monospace;font-size:12px;color:rgba(0,0,0,0.45);">subí una foto para ver la vista previa</span>
+            </div>
+          </sc-if>
+          </div>
+          <sc-if value="{{ showGenericCamera }}" hint-placeholder-val="{{ true }}">
+            <div style="position:absolute;top:18px;left:18px;width:56px;height:56px;border-radius:16px;background:oklch(20% 0.01 75 / 0.9);pointer-events:none;"></div>
+            <div style="position:absolute;top:30px;left:30px;width:16px;height:16px;border-radius:50%;background:#111;pointer-events:none;"></div>
+            <div style="position:absolute;top:52px;left:30px;width:10px;height:10px;border-radius:50%;background:#333;pointer-events:none;"></div>
+          </sc-if>
+          <img src="./uploads/Samsung.png" width="311" height="643" decoding="async" alt="Funda Samsung" style="{{ caseImgSamsungStyle }}">
+          <img src="./uploads/IphoneV1.png" width="311" height="643" decoding="async" alt="Funda Apple transparente" style="{{ caseImgAppleStyle }}">
+          <img src="./uploads/IphoneV1-negro.png" width="311" height="643" decoding="async" alt="Funda Apple negra" style="{{ caseImgAppleBlackStyle }}">
+          <img src="./uploads/xiaomi.png" width="311" height="643" decoding="async" alt="Funda Xiaomi" style="{{ caseImgXiaomiStyle }}">
+          <img src="./uploads/motorola.png" width="311" height="643" decoding="async" alt="Funda Motorola" style="{{ caseImgMotorolaStyle }}">
         </div>
-        <p style="text-align:center;font-size:12px;color:oklch(55% 0.01 75);margin-top:12px;">{{ dBrand }} {{ dModel }}</p>
+        <p style="text-align:center;font-size:12px;color:oklch(62% 0.008 75);margin-top:12px;">{{ dBrand }} {{ dModel }}</p>
       </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIOS -->
-  <section id="testimonios" class="mk-section" style="padding:80px 40px;max-width:1280px;margin:0 auto;">
-    <h2 style="font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;margin:0 0 36px;">Lo que dicen nuestros clientes</h2>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:24px;">
-      <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="3">
-        <div style="background:#fff;border:1px solid oklch(90% 0.01 75);border-radius:16px;padding:28px;">
-          <p style="font-size:15px;line-height:1.6;margin:0 0 16px;color:oklch(30% 0.01 75);">"{{ t.text }}"</p>
-          <p style="font-size:13px;font-weight:600;color:oklch(45% 0.01 75);margin:0;">{{ t.author }}</p>
-        </div>
-      </sc-for>
     </div>
   </section>
 
@@ -318,37 +373,63 @@
     <h2 style="font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;margin:0 0 36px;">Preguntas frecuentes</h2>
     <div style="display:flex;flex-direction:column;gap:12px;">
       <sc-for list="{{ faqs }}" as="item" hint-placeholder-count="5">
-        <div style="border:1px solid oklch(90% 0.01 75);border-radius:12px;background:#fff;overflow:hidden;">
-          <button onClick="{{ item.onToggle }}" style="width:100%;text-align:left;padding:18px 20px;background:none;border:none;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;color:oklch(22% 0.015 75);">
+        <div style="border:1px solid oklch(24% 0.008 75);border-radius:12px;background:oklch(18% 0.008 75);overflow:hidden;">
+          <button onClick="{{ item.onToggle }}" style="width:100%;text-align:left;padding:18px 20px;background:none;border:none;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;color:oklch(94% 0.005 75);">
             {{ item.q }}
             <span>{{ item.icon }}</span>
           </button>
           <sc-if value="{{ item.open }}">
-            <p style="padding:0 20px 20px;margin:0;font-size:14px;line-height:1.6;color:oklch(45% 0.01 75);">{{ item.a }}</p>
+            <p style="padding:0 20px 20px;margin:0;font-size:14px;line-height:1.6;color:oklch(72% 0.008 75);">{{ item.a }}</p>
           </sc-if>
         </div>
       </sc-for>
     </div>
   </section>
 
+  <!-- TRUST STRIP -->
+  <section class="mk-trust" style="display:flex;justify-content:center;align-items:center;gap:0;flex-wrap:wrap;padding:30px 40px;margin:0 auto;max-width:1280px;">
+    <div style="padding:0 28px 0 0;font-size:14px;font-weight:500;letter-spacing:0.01em;color:oklch(78% 0.008 75);">Envíos a todo el país · <span style="color:oklch(64% 0.2 25);font-weight:700;">GRATIS en CABA</span></div>
+    <div style="padding:0 28px;border-left:1px solid oklch(28% 0.008 75);font-size:14px;font-weight:500;letter-spacing:0.01em;color:oklch(78% 0.008 75);">Retiro: Víctor Hugo 2220 (Villa Real) · Av. Corrientes 6116 (Villa Crespo)</div>
+    <div style="padding:0 28px;border-left:1px solid oklch(28% 0.008 75);font-size:14px;font-weight:500;letter-spacing:0.01em;color:oklch(78% 0.008 75);">Coordinás todo por WhatsApp</div>
+  </section>
+
   <!-- FOOTER -->
-  <footer class="mk-footer" style="padding:56px 40px;background:oklch(20% 0.015 75);color:oklch(85% 0.005 75);">
-    <div class="mk-footer-inner" style="max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px;">
-      <div>
-        <div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:22px;color:#fff;margin-bottom:8px;">Mallorka</div>
-        <p style="font-size:13px;color:oklch(70% 0.005 75);max-width:280px;">Fundas de celular personalizadas. Envíos a todo el país.</p>
+  <footer class="mk-footer" style="padding:56px 40px;background:oklch(7% 0.004 75);color:oklch(80% 0.005 75);">
+    <div class="mk-footer-inner" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <img src="./uploads/mallorka_logo.jpeg" alt="Mallorka" width="673" height="536" loading="lazy" decoding="async" style="height:82px;width:auto;display:block;mix-blend-mode:lighten;margin:-14px 0 0 -8px;">
+        <a href="{{ waGeneralLink }}" target="_blank" rel="noopener noreferrer" style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:oklch(64% 0.2 25);color:#fff;padding:11px 18px;border-radius:8px;font-weight:600;font-size:14px;">Escribinos por WhatsApp</a>
       </div>
-      <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;">
-        <a href="{{ waGeneralLink }}" target="_blank" style="color:oklch(85% 0.005 75);">WhatsApp: +54 11 2662-2513</a>
-        <span>mallorka.fundas@gmail.com</span>
-        <a href="https://instagram.com/mallorka.fundas" target="_blank" style="color:oklch(85% 0.005 75);">@mallorka.fundas</a>
+
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:oklch(55% 0.005 75);margin-bottom:2px;">Navegación</div>
+        <a href="#catalogo" style="display:inline-flex;align-items:center;min-height:40px;font-size:14px;color:oklch(80% 0.005 75);">Catálogo</a>
+        <a href="#disenador" style="display:inline-flex;align-items:center;min-height:40px;font-size:14px;color:oklch(80% 0.005 75);">Diseñá tu funda</a>
+        <a href="#faq" style="display:inline-flex;align-items:center;min-height:40px;font-size:14px;color:oklch(80% 0.005 75);">Preguntas frecuentes</a>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:oklch(55% 0.005 75);margin-bottom:2px;">Contacto</div>
+        <a href="{{ waGeneralLink }}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;min-height:40px;font-size:14px;color:oklch(80% 0.005 75);">+54 11 2662-2513</a>
+        <a href="mailto:mallorka.fundas@gmail.com" style="display:inline-flex;align-items:center;min-height:40px;font-size:14px;color:oklch(80% 0.005 75);">mallorka.fundas@gmail.com</a>
+        <a href="https://instagram.com/mallorka.fundas" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;min-height:40px;font-size:14px;color:oklch(80% 0.005 75);">@mallorka.fundas</a>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:oklch(55% 0.005 75);margin-bottom:2px;">Retiro y envíos</div>
+        <div style="font-size:14px;line-height:1.5;color:oklch(80% 0.005 75);">Víctor Hugo 2220<br><span style="color:oklch(58% 0.005 75);font-size:13px;">Villa Real, CABA</span></div>
+        <div style="font-size:14px;line-height:1.5;color:oklch(80% 0.005 75);">Av. Corrientes 6116<br><span style="color:oklch(58% 0.005 75);font-size:13px;">Villa Crespo, CABA</span></div>
+        <div style="font-size:13px;color:oklch(74% 0.09 25);font-weight:600;">Envío GRATIS en CABA</div>
       </div>
     </div>
-    <p style="text-align:center;font-size:12px;color:oklch(55% 0.005 75);margin:40px 0 0;">© 2026 Mallorka. Todos los derechos reservados.</p>
+    <div style="max-width:1280px;margin:44px auto 0;padding-top:22px;border-top:1px solid oklch(18% 0.006 75);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12px;color:oklch(50% 0.005 75);">
+      <span>© 2026 Mallorka. Todos los derechos reservados.</span>
+      <span>Buenos Aires, Argentina</span>
+    </div>
   </footer>
 
   <!-- WHATSAPP FLOTANTE -->
-  <a href="{{ waGeneralLink }}" target="_blank" aria-label="WhatsApp" style="position:fixed;bottom:20px;right:20px;z-index:45;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.25);">
+  <a href="{{ waGeneralLink }}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" style="position:fixed;bottom:20px;right:20px;z-index:45;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.25);">
     <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>
   </a>
 
@@ -361,7 +442,6 @@ class Component extends DCLogic {
     loading: true,
     products: [],
     categories: [],
-    testimonialsData: [],
     faqData: [],
     phoneModels: {},
     activeCategory: "Todas",
@@ -371,6 +451,7 @@ class Component extends DCLogic {
     faqOpen: null,
     mobileMenuOpen: false,
     dBrand: "iPhone",
+    dCaseColor: "transparente",
     dModel: "",
     uploadedImage: null,
     rotation: 0,
@@ -385,22 +466,49 @@ class Component extends DCLogic {
     return (this.props.sheetCsvUrl || (mod && mod.DEFAULT_SHEET_CSV_URL) || "").trim();
   }
 
+  isAllowedSheetUrl(value) {
+    try {
+      const u = new URL(String(value));
+      return u.protocol === "https:" && u.hostname === "docs.google.com";
+    } catch (_) {
+      return false;
+    }
+  }
+
   resolveLocalConfig() {
     const cfg = (typeof window !== "undefined" && window.MALLORKA_CONFIG) || {};
-    const params = new URLSearchParams(location.search);
-    const sheetParam = params.get("sheet");
-    if (cfg.whatsappNumber) this.props.whatsappNumber = cfg.whatsappNumber;
-    if (cfg.sheetCsvUrl) this.props.sheetCsvUrl = cfg.sheetCsvUrl;
-    if (sheetParam) this.props.sheetCsvUrl = decodeURIComponent(sheetParam);
+    if (cfg.whatsappNumber) this.props.whatsappNumber = String(cfg.whatsappNumber).replace(/[^0-9]/g, "");
+    if (cfg.sheetCsvUrl && this.isAllowedSheetUrl(cfg.sheetCsvUrl)) this.props.sheetCsvUrl = cfg.sheetCsvUrl;
+    let sheetParam = null;
+    try {
+      sheetParam = new URLSearchParams(location.search).get("sheet");
+      if (sheetParam) sheetParam = decodeURIComponent(sheetParam);
+    } catch (_) {
+      sheetParam = null;
+    }
+    // Solo se acepta un CSV de Google Sheets: evita que un link con ?sheet=
+    // inyecte productos, precios o imágenes desde un origen ajeno.
+    if (sheetParam && this.isAllowedSheetUrl(sheetParam)) this.props.sheetCsvUrl = sheetParam;
   }
 
   async componentDidMount() {
+    document.documentElement.lang = "es";
+    for (const src of [
+      "./uploads/Samsung.png",
+      "./uploads/samsung-printmask.png",
+      "./uploads/IphoneV1.png",
+      "./uploads/IphoneV1-negro.png",
+      "./uploads/iphone-printmask.png",
+      "./uploads/xiaomi.png",
+      "./uploads/xiaomi-printmask.png",
+      "./uploads/motorola.png",
+      "./uploads/motorola-printmask.png",
+    ]) { const im = new Image(); im.src = src; }
     this.resolveLocalConfig();
     try { sessionStorage.removeItem("mallorka_catalog_v1"); } catch(_) {}
     const mod = await import("./catalog-data.js");
     this.mod = mod;
     this.setState({
-      testimonialsData: mod.TESTIMONIALS,
       faqData: mod.FAQS,
       phoneModels: mod.PHONE_MODELS,
       dModel: (mod.PHONE_MODELS.iPhone && mod.PHONE_MODELS.iPhone[3]) || "",
@@ -466,7 +574,7 @@ class Component extends DCLogic {
   };
 
   waLink(message) {
-    const number = (this.props.whatsappNumber || "5491100000000").replace(/[^0-9]/g, "");
+    const number = String(this.props.whatsappNumber || "5491100000000").replace(/[^0-9]/g, "").slice(0, 15);
     return "https://wa.me/" + number + "?text=" + encodeURIComponent(message);
   }
 
@@ -485,10 +593,23 @@ class Component extends DCLogic {
     this.setState({ dBrand: brand, dModel: models[0] || "" });
   };
   onModelChange = (e) => this.setState({ dModel: e.target.value });
+  setCaseColor = (color) => this.setState({ dCaseColor: color });
 
   onFileChange = (e) => {
     const file = e.target.files && e.target.files[0];
     if (!file) return;
+    const ALLOWED = ["image/jpeg", "image/png", "image/webp", "image/heic", "image/heif"];
+    const MAX_BYTES = 12 * 1024 * 1024;
+    if (!ALLOWED.includes(file.type)) {
+      alert("Subí una imagen JPG, PNG o WEBP.");
+      e.target.value = "";
+      return;
+    }
+    if (file.size > MAX_BYTES) {
+      alert("La imagen supera los 12 MB. Probá con una más liviana.");
+      e.target.value = "";
+      return;
+    }
     const reader = new FileReader();
     reader.onload = () => {
       this.setState({ uploadedImage: reader.result, rotation: 0, zoom: 1.0, posX: 0, posY: 0 });
@@ -512,9 +633,9 @@ class Component extends DCLogic {
   renderVals() {
     const s = this.state;
     const coral = "oklch(68% 0.16 25)";
-    const coralDeep = "oklch(58% 0.17 25)";
+    const coralDeep = "oklch(64% 0.2 25)";
     const teal = "oklch(68% 0.13 190)";
-    const tealDeep = "oklch(58% 0.13 190)";
+    const tealDeep = "oklch(68% 0.13 190)";
 
     const mod = this.mod || {
       isProductActive: (v) => String(v ?? "true").toLowerCase() !== "false",
@@ -559,9 +680,10 @@ class Component extends DCLogic {
           alignItems: "center",
           justifyContent: "center",
           minHeight: hasImage ? "auto" : "180px",
+          aspectRatio: hasImage ? "3 / 5" : "auto",
           padding: hasImage ? "12px" : "0",
           background: hasImage
-            ? "oklch(96% 0.01 75)"
+            ? "oklch(21% 0.008 75)"
             : "repeating-linear-gradient(135deg, " + coral + " 0px 16px, " + teal + " 16px 32px)",
         },
         imgStyle: {
@@ -585,11 +707,12 @@ class Component extends DCLogic {
       label: c,
       onSelect: () => this.setCategory(c),
       style: {
-        padding: "9px 16px",
-        borderRadius: "20px",
-        border: "1px solid " + (s.activeCategory === c ? coralDeep : "oklch(85% 0.01 75)"),
-        background: s.activeCategory === c ? coralDeep : "#fff",
-        color: s.activeCategory === c ? "#fff" : "oklch(30% 0.01 75)",
+        padding: "12px 18px",
+        minHeight: "44px",
+        borderRadius: "22px",
+        border: "1px solid " + (s.activeCategory === c ? coralDeep : "oklch(31% 0.008 75)"),
+        background: s.activeCategory === c ? coralDeep : "oklch(18% 0.008 75)",
+        color: s.activeCategory === c ? "#fff" : "oklch(88% 0.008 75)",
         fontSize: "13px",
         fontWeight: 600,
         cursor: "pointer",
@@ -604,20 +727,44 @@ class Component extends DCLogic {
         display: "block",
         padding: "28px 20px",
         borderRadius: "16px",
-        background: i % 2 === 0 ? "oklch(94% 0.03 25)" : "oklch(94% 0.03 190)",
-        color: i % 2 === 0 ? coralDeep : tealDeep,
+        background: "oklch(18% 0.008 75)",
+        border: "1px solid oklch(26% 0.008 75)",
+        color: "oklch(92% 0.005 75)",
       },
     }));
 
+    const brandLabel = (b) => (b === "iPhone" ? "Apple" : b);
     const brandOptions = ["iPhone", "Samsung", "Motorola", "Xiaomi"].map((b) => ({
-      name: b,
+      name: brandLabel(b),
       onSelect: () => this.setDesignerBrand(b),
       style: {
-        padding: "10px 18px",
+        padding: "12px 18px",
+        minHeight: "44px",
         borderRadius: "8px",
-        border: "1px solid " + (s.dBrand === b ? coralDeep : "oklch(85% 0.01 75)"),
-        background: s.dBrand === b ? coralDeep : "#fff",
-        color: s.dBrand === b ? "#fff" : "oklch(30% 0.01 75)",
+        border: "1px solid " + (s.dBrand === b ? coralDeep : "oklch(31% 0.008 75)"),
+        background: s.dBrand === b ? coralDeep : "oklch(18% 0.008 75)",
+        color: s.dBrand === b ? "#fff" : "oklch(88% 0.008 75)",
+        fontSize: "14px",
+        fontWeight: 600,
+        cursor: "pointer",
+        fontFamily: "Inter, sans-serif",
+      },
+    }));
+
+    const effectiveColor = s.dBrand === "iPhone" ? s.dCaseColor : "negro";
+    const caseColorOptions = (s.dBrand === "iPhone" ? ["transparente", "negro"] : ["negro"]).map((col) => ({
+      label: col === "negro" ? "Negro" : "Transparente",
+      onSelect: () => this.setCaseColor(col),
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: "8px",
+        minHeight: "44px",
+        padding: "12px 18px",
+        borderRadius: "8px",
+        border: "1px solid " + (effectiveColor === col ? coralDeep : "oklch(31% 0.008 75)"),
+        background: effectiveColor === col ? coralDeep : "oklch(18% 0.008 75)",
+        color: effectiveColor === col ? "#fff" : "oklch(88% 0.008 75)",
         fontSize: "14px",
         fontWeight: 600,
         cursor: "pointer",
@@ -634,6 +781,15 @@ class Component extends DCLogic {
     }));
 
     const hasUploadedImage = !!s.uploadedImage;
+    const CASES = {
+      Samsung: { img: "./uploads/Samsung.png", mask: "./uploads/iphone-printmask.png" },
+      iPhone: { img: s.dCaseColor === "negro" ? "./uploads/IphoneV1-negro.png" : "./uploads/IphoneV1.png", mask: "./uploads/iphone-printmask.png" },
+      Xiaomi: { img: "./uploads/xiaomi.png", mask: "./uploads/xiaomi-printmask.png" },
+      Motorola: { img: "./uploads/motorola.png", mask: "./uploads/motorola-printmask.png" },
+    };
+    CASES.Samsung.mask = "./uploads/samsung-printmask.png";
+    const caseAsset = CASES[s.dBrand] || null;
+    const isSamsung = !!caseAsset;
 
     return {
       waGeneralLink: this.waLink("Hola! Quiero hacer una consulta sobre las fundas Mallorka."),
@@ -646,17 +802,64 @@ class Component extends DCLogic {
       showFeaturedSection: !s.loading && !s.loadError && featuredSource.length > 0,
       featuredProducts: featuredSource.map(mapProductCard),
       categoryFilters,
-      brandFilters: distinctBrands,
+      brandFilters: distinctBrands.map((b) => ({ value: b, label: brandLabel(b) })),
       onBrandFilterChange: this.onBrandFilterChange,
       categoriesWithStyle,
       brandOptions,
       modelOptions: (s.phoneModels && s.phoneModels[s.dBrand]) || [],
       dModel: s.dModel,
       onModelChange: this.onModelChange,
-      dBrand: s.dBrand,
+      dBrand: brandLabel(s.dBrand),
       uploadLabel: hasUploadedImage ? "Cambiar foto" : "Subir foto",
       onFileChange: this.onFileChange,
       hasUploadedImage,
+      isSamsung,
+      showCaseColor: true,
+      caseColorOptions,
+      caseColorLabel: s.dCaseColor === "negro" ? "negra" : "transparente",
+      caseImgSamsungStyle: { position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "fill", pointerEvents: "none", visibility: s.dBrand === "Samsung" ? "visible" : "hidden" },
+      caseImgAppleStyle: { position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "fill", pointerEvents: "none", visibility: s.dBrand === "iPhone" && s.dCaseColor !== "negro" ? "visible" : "hidden" },
+      caseImgAppleBlackStyle: { position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "fill", pointerEvents: "none", visibility: s.dBrand === "iPhone" && s.dCaseColor === "negro" ? "visible" : "hidden" },
+      caseImgXiaomiStyle: { position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "fill", pointerEvents: "none", visibility: s.dBrand === "Xiaomi" ? "visible" : "hidden" },
+      caseImgMotorolaStyle: { position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "fill", pointerEvents: "none", visibility: s.dBrand === "Motorola" ? "visible" : "hidden" },
+      showGenericCamera: !isSamsung,
+      showGenericPlaceholder: !hasUploadedImage && !isSamsung,
+      showSamsungPlaceholder: !hasUploadedImage && isSamsung,
+      mockInnerStyle: isSamsung
+        ? {
+            position: "absolute",
+            inset: 0,
+            overflow: "hidden",
+            background: "#fff",
+            WebkitMaskImage: "url(" + caseAsset.mask + ")",
+            maskImage: "url(" + caseAsset.mask + ")",
+            WebkitMaskSize: "100% 100%",
+            maskSize: "100% 100%",
+            WebkitMaskRepeat: "no-repeat",
+            maskRepeat: "no-repeat",
+          }
+        : { position: "absolute", inset: 0, overflow: "hidden" },
+      mockStyle: isSamsung
+        ? {
+            position: "relative",
+            width: "230px",
+            height: "476px",
+            margin: "0 auto",
+            background: "transparent",
+            touchAction: "none",
+          }
+        : {
+            position: "relative",
+            width: "230px",
+            height: "460px",
+            margin: "0 auto",
+            borderRadius: "40px",
+            background: "#1c1c1c",
+            overflow: "hidden",
+            boxShadow: "0 30px 50px -14px rgba(0,0,0,0.35)",
+            border: "3px solid oklch(20% 0.01 75)",
+            touchAction: "none",
+          },
       uploadedImage: s.uploadedImage,
       zoom: s.zoom,
       rotation: s.rotation,
@@ -684,11 +887,11 @@ class Component extends DCLogic {
         touchAction: "none",
       },
       designerWaLink: this.waLink(
-        "Hola! Quiero pedir una funda personalizada para " + s.dBrand + " " + s.dModel + ". Ya armé el diseño en la web con mi foto, te la mando por acá."
+        "Hola! Quiero pedir una funda personalizada para " + brandLabel(s.dBrand) + " " + s.dModel + (s.dBrand === "iPhone" ? " (funda " + (s.dCaseColor === "negro" ? "negra" : "transparente") + ")" : "") + ". Ya armé el diseño en la web con mi foto, te la mando por acá."
       ),
       designerCtaStyle: {
         textAlign: "center",
-        background: hasUploadedImage ? coralDeep : "oklch(80% 0.01 75)",
+        background: hasUploadedImage ? coralDeep : "oklch(28% 0.008 75)",
         color: "#fff",
         padding: "16px",
         borderRadius: "10px",
@@ -696,7 +899,6 @@ class Component extends DCLogic {
         fontSize: "15px",
         pointerEvents: hasUploadedImage ? "auto" : "none",
       },
-      testimonials: s.testimonialsData,
       faqs,
       mobileMenuOpen: s.mobileMenuOpen,
       toggleMobileMenu: this.toggleMobileMenu,

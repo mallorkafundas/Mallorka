@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /local.config.js
+
+Sitemap: https://mallorkafundas.com.ar/sitemap.xml

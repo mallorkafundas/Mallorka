@@ -11,16 +11,11 @@ export const PHONE_MODELS = {
   Xiaomi: ["Redmi Note 11", "Redmi Note 12", "Redmi Note 13", "Xiaomi 12", "Xiaomi 13", "Xiaomi 14", "POCO X5"],
 };
 
-export const TESTIMONIALS = [
-  { text: "Pedí la funda con una foto de mi perro y quedó igual a como la armé en la web. Llegó en tres días.", author: "Carla, Rosario" },
-  { text: "Buenísima la herramienta para subir la foto y acomodarla. Elegí mi modelo exacto y encajó perfecto.", author: "Nico, Córdoba" },
-  { text: "Compré dos con diseños del catálogo y una personalizada. Las tres se ven excelentes.", author: "Male, Mendoza" },
-];
-
 export const FAQS = [
   { q: "¿Cómo hago un pedido?", a: "Elegí un diseño del catálogo o usá el diseñador para subir tu foto. Seleccioná la marca y modelo de tu celular y tocá el botón de WhatsApp. Te confirmamos el pedido y coordinamos el pago y envío." },
   { q: "¿La misma imagen sirve para cualquier celular?", a: "Sí. Los diseños del catálogo son universales: la foto es la misma y nosotros adaptamos la funda al molde de tu marca y modelo (iPhone, Samsung, Motorola o Xiaomi)." },
   { q: "¿No encontrás tu modelo de celular?", a: "Escribinos por WhatsApp indicando la marca y el modelo exacto de tu celular. Muchas veces disponemos del molde aunque no figure en la lista de la web, o te confirmamos si podemos conseguirlo." },
+  { q: "¿Dónde puedo retirar el pedido? ¿Hacen envío gratis?", a: "Tenemos dos puntos de retiro: Víctor Hugo 2220, Barrio Villa Real, y Av. Corrientes 6116, Villa Crespo. En CABA el envío es gratis; al resto del país cotizamos el envío por WhatsApp." },
   { q: "¿Cuánto tarda la producción y el envío?", a: "La producción suele demorar entre 2 y 4 días hábiles. Los envíos en CABA y GBA tardan 1 a 2 días extra; al interior del país depende del correo o transporte elegido." },
   { q: "¿Qué formas de pago aceptan?", a: "Mercado Pago, transferencia bancaria y efectivo (retiro o entrega coordinada). Te pasamos todos los datos por WhatsApp al confirmar tu pedido." },
   { q: "¿Qué calidad de imagen necesito para una funda personalizada?", a: "Recomendamos fotos nítidas, bien iluminadas y en alta resolución. Si la imagen no es ideal, te avisamos antes de imprimir para que puedas enviar otra." },
@@ -86,11 +81,21 @@ export function extractDriveFileId(url) {
   return "";
 }
 
+function isSafeHttpUrl(value) {
+  try {
+    const u = new URL(String(value));
+    return u.protocol === "https:" || u.protocol === "http:";
+  } catch (_) {
+    return false;
+  }
+}
+
 export function getDriveImageFallbacks(url) {
   const fileId = extractDriveFileId(url);
   if (!fileId) {
     const u = String(url || "").trim();
-    return u ? [u] : [];
+    // Descarta javascript:, data: y demás esquemas antes de llegar a <img src>.
+    return isSafeHttpUrl(u) ? [u] : [];
   }
   return [
     "https://drive.google.com/thumbnail?id=" + fileId + "&sz=w1000",
