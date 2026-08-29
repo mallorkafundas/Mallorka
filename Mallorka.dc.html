@@ -191,7 +191,12 @@
             <div style="padding:16px;display:flex;flex-direction:column;gap:8px;flex:1;">
               <div style="font-size:11px;font-weight:600;color:oklch(72% 0.008 75);text-transform:uppercase;letter-spacing:0.04em;">{{ p.marca }}</div>
               <div style="font-weight:600;font-size:16px;">{{ p.nombre }}</div>
-              <div style="font-weight:700;font-size:18px;color:oklch(64% 0.2 25);">{{ p.precioFmt }}</div>
+              <div style="display:flex;flex-direction:column;gap:2px;">
+                <div style="display:flex;justify-content:space-between;gap:10px;font-size:14px;"><span style="color:oklch(72% 0.008 75);">Color: Negro</span><span style="font-weight:700;color:oklch(64% 0.2 25);font-variant-numeric:tabular-nums;">{{ p.precioNegroFmt }}</span></div>
+                <sc-if value="{{ p.showTransparente }}" hint-placeholder-val="{{ true }}">
+                  <div style="display:flex;justify-content:space-between;gap:10px;font-size:14px;"><span style="color:oklch(72% 0.008 75);">{{ p.transparenteLabel }}</span><span style="font-weight:700;color:oklch(64% 0.2 25);font-variant-numeric:tabular-nums;">{{ p.precioTransparenteFmt }}</span></div>
+                </sc-if>
+              </div>
               <a href="{{ p.waLink }}" target="_blank" rel="noopener noreferrer" style="margin-top:8px;text-align:center;background:oklch(95% 0.005 75);color:oklch(14% 0.01 75);padding:14px 10px;border-radius:8px;font-weight:600;font-size:14px;">Pedir por WhatsApp</a>
             </div>
           </div>
@@ -263,7 +268,12 @@
           <div style="padding:16px;display:flex;flex-direction:column;gap:8px;flex:1;">
             <div style="font-size:11px;font-weight:600;color:oklch(72% 0.008 75);text-transform:uppercase;letter-spacing:0.04em;">{{ p.marca }}</div>
             <div style="font-weight:600;font-size:16px;">{{ p.nombre }}</div>
-            <div style="font-weight:700;font-size:18px;color:oklch(64% 0.2 25);">{{ p.precioFmt }}</div>
+            <div style="display:flex;flex-direction:column;gap:2px;">
+              <div style="display:flex;justify-content:space-between;gap:10px;font-size:14px;"><span style="color:oklch(72% 0.008 75);">Color: Negro</span><span style="font-weight:700;color:oklch(64% 0.2 25);font-variant-numeric:tabular-nums;">{{ p.precioNegroFmt }}</span></div>
+              <sc-if value="{{ p.showTransparente }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;justify-content:space-between;gap:10px;font-size:14px;"><span style="color:oklch(72% 0.008 75);">{{ p.transparenteLabel }}</span><span style="font-weight:700;color:oklch(64% 0.2 25);font-variant-numeric:tabular-nums;">{{ p.precioTransparenteFmt }}</span></div>
+              </sc-if>
+            </div>
             <a href="{{ p.waLink }}" target="_blank" rel="noopener noreferrer" style="margin-top:8px;text-align:center;background:oklch(95% 0.005 75);color:oklch(14% 0.01 75);padding:14px 10px;border-radius:8px;font-weight:600;font-size:14px;">Pedir por WhatsApp</a>
           </div>
         </div>
@@ -326,20 +336,27 @@
               <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:500;color:oklch(72% 0.008 75);margin-bottom:6px;"><span>Rotación</span><span style="font-variant-numeric:tabular-nums;">{{ rotationLabel }}</span></div>
               <input type="range" min="-180" max="180" step="1" value="{{ rotation }}" onChange="{{ onRotationChange }}" style="width:100%;">
             </div>
-            <p style="font-size:12px;color:oklch(62% 0.008 75);margin:0;">Tip: arrastrá la foto dentro de la funda para reacomodarla.</p>
+            <p style="font-size:12px;color:oklch(62% 0.008 75);margin:0;">Tip: arrastrá la foto con un dedo para reacomodarla y pellizcá con dos dedos para hacer zoom.</p>
             <button onClick="{{ resetDesigner }}" style="align-self:flex-start;background:oklch(20% 0.008 75);border:1px solid oklch(34% 0.008 75);color:oklch(92% 0.005 75);font-family:'Inter',sans-serif;padding:9px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">Reiniciar ajustes</button>
           </div>
         </sc-if>
 
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;max-width:320px;border-top:1px solid oklch(24% 0.008 75);padding-top:18px;">
+          <div>
+            <div style="font-size:12px;color:oklch(62% 0.008 75);text-transform:uppercase;letter-spacing:0.06em;font-weight:600;">Precio</div>
+            <div style="font-size:13px;color:oklch(72% 0.008 75);margin-top:4px;">{{ designerPriceNote }}</div>
+          </div>
+          <div style="font-family:'Poppins',sans-serif;font-size:28px;font-weight:700;color:oklch(64% 0.2 25);font-variant-numeric:tabular-nums;">{{ designerPriceFmt }}</div>
+        </div>
         <a href="{{ designerWaLink }}" target="_blank" rel="noopener noreferrer" class="mk-designer-cta" style="{{ designerCtaStyle }}">Pedir esta funda por WhatsApp</a>
         <p style="font-size:12px;color:oklch(62% 0.008 75);max-width:320px;margin:-14px 0 0;">Por WhatsApp coordinamos el pedido; adjuntá ahí la misma foto que usaste acá para confirmar el diseño.</p>
       </div>
 
       <div class="mk-designer-preview" style="position:sticky;top:100px;">
-        <div style="{{ mockStyle }}" onPointerMove="{{ onPointerMove }}" onPointerUp="{{ onPointerUp }}" onPointerLeave="{{ onPointerUp }}">
+        <div style="{{ mockStyle }}" onPointerDown="{{ onPointerDown }}" onPointerMove="{{ onPointerMove }}" onPointerUp="{{ onPointerUp }}" onPointerCancel="{{ onPointerUp }}" onPointerLeave="{{ onPointerUp }}">
           <div style="{{ mockInnerStyle }}">
           <sc-if value="{{ hasUploadedImage }}" hint-placeholder-val="{{ false }}">
-            <div onPointerDown="{{ onPointerDown }}" style="{{ imageStyle }}"></div>
+            <div style="{{ imageStyle }}"></div>
           </sc-if>
           <sc-if value="{{ showGenericPlaceholder }}">
             <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 24px;background:repeating-linear-gradient(135deg, oklch(28% 0.01 75) 0px 14px, oklch(22% 0.01 75) 14px 28px);">
@@ -452,6 +469,7 @@ class Component extends DCLogic {
     mobileMenuOpen: false,
     dBrand: "iPhone",
     dCaseColor: "transparente",
+    customPrices: { negro: 18000, transparente: 21000 },
     dModel: "",
     uploadedImage: null,
     rotation: 0,
@@ -534,9 +552,27 @@ class Component extends DCLogic {
     if (url) {
       try {
         const rows = await mod.fetchSheetProducts(url);
+        // Fila de configuración: categoria "precios" (o "personalizada").
+        // Define el precio de TODAS las fundas negras y transparentes.
+        const isCustom = (p) => {
+          const cat = (p.categoria || "").toLowerCase();
+          return cat.includes("precios") || cat.includes("personalizada") ||
+            (p.nombre || "").toLowerCase().startsWith("personalizada");
+        };
+        const catalogRows = rows.filter((r) => !isCustom(r));
+        const customPrices = { ...this.state.customPrices };
+        rows.filter(isCustom).forEach((r) => {
+          if (r.precio_negro) customPrices.negro = r.precio_negro;
+          if (r.precio_transparente) customPrices.transparente = r.precio_transparente;
+          if (r.precio) {
+            const txt = ((r.nombre || "") + " " + (r.categoria || "")).toLowerCase();
+            customPrices[txt.includes("transparente") ? "transparente" : "negro"] = r.precio;
+          }
+        });
         this.setState({
-          products: rows,
-          categories: mod.deriveCategoriesFromProducts(rows),
+          products: catalogRows,
+          categories: mod.deriveCategoriesFromProducts(catalogRows),
+          customPrices,
           loading: false,
           loadError: false,
         });
@@ -582,6 +618,29 @@ class Component extends DCLogic {
     return "$" + Number(n || 0).toLocaleString("es-AR");
   }
 
+  // Precios base por color (del Sheet). La columna "precio" de cada producto
+  // es opcional: si tiene valor, reemplaza el precio de la funda negra de ese
+  // diseño y la transparente mantiene la diferencia entre los precios base.
+  basePrices() {
+    const cp = this.state.customPrices || {};
+    return { negro: cp.negro || 18000, transparente: cp.transparente || 21000 };
+  }
+
+  // Un único precio por color para todo el sitio (catálogo y personalizadas).
+  productColorPrices() {
+    return this.basePrices();
+  }
+
+  // Precio de la funda personalizada según color. Sale del Google Sheet:
+  // filas con categoria "personalizada" y nombre que indique el color.
+  customPrice(color) {
+    const brand = this.state.dBrand;
+    const col = brand === "iPhone" && color === "transparente" ? "transparente" : "negro";
+    const fromSheet = this.state.customPrices && this.state.customPrices[col];
+    if (fromSheet) return fromSheet;
+    return col === "transparente" ? 21000 : 18000;
+  }
+
   setCategory = (cat) => this.setState({ activeCategory: cat });
   onBrandFilterChange = (e) => this.setState({ activeBrand: e.target.value });
   toggleFaq = (i) => this.setState((s) => ({ faqOpen: s.faqOpen === i ? null : i }));
@@ -617,15 +676,80 @@ class Component extends DCLogic {
     reader.readAsDataURL(file);
   };
 
+  pointers = new Map();
+  pinch = null;
+
+  pointerList = () => Array.from(this.pointers.values());
+
+  startPinch = () => {
+    const [a, b] = this.pointerList();
+    const dist = Math.hypot(a.x - b.x, a.y - b.y);
+    this.pinch = {
+      dist: dist || 1,
+      zoom: this.state.zoom,
+      midX: (a.x + b.x) / 2,
+      midY: (a.y + b.y) / 2,
+      posX: this.state.posX,
+      posY: this.state.posY,
+    };
+  };
+
   onPointerDown = (e) => {
+    if (!this.state.uploadedImage) return;
     e.preventDefault();
-    this.setState({ dragging: true, dragOrigin: { x: e.clientX - this.state.posX, y: e.clientY - this.state.posY } });
+    this.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (this.pointers.size === 2) {
+      this.startPinch();
+      this.setState({ dragging: false });
+    } else if (this.pointers.size === 1) {
+      this.pinch = null;
+      this.setState({ dragging: true, dragOrigin: { x: e.clientX - this.state.posX, y: e.clientY - this.state.posY } });
+    }
   };
+
   onPointerMove = (e) => {
-    if (!this.state.dragging) return;
-    this.setState({ posX: e.clientX - this.state.dragOrigin.x, posY: e.clientY - this.state.dragOrigin.y });
+    if (!this.pointers.has(e.pointerId)) {
+      if (!this.state.dragging) return;
+      this.setState({ posX: e.clientX - this.state.dragOrigin.x, posY: e.clientY - this.state.dragOrigin.y });
+      return;
+    }
+    e.preventDefault();
+    this.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+    if (this.pointers.size >= 2 && this.pinch) {
+      const [a, b] = this.pointerList();
+      const dist = Math.hypot(a.x - b.x, a.y - b.y);
+      const ratio = dist / this.pinch.dist;
+      const zoom = Math.min(3, Math.max(0.5, this.pinch.zoom * ratio));
+      const midX = (a.x + b.x) / 2;
+      const midY = (a.y + b.y) / 2;
+      this.setState({
+        zoom: Math.round(zoom * 100) / 100,
+        posX: this.pinch.posX + (midX - this.pinch.midX),
+        posY: this.pinch.posY + (midY - this.pinch.midY),
+      });
+      return;
+    }
+    if (this.state.dragging) {
+      this.setState({ posX: e.clientX - this.state.dragOrigin.x, posY: e.clientY - this.state.dragOrigin.y });
+    }
   };
-  onPointerUp = () => this.state.dragging && this.setState({ dragging: false });
+
+  onPointerUp = (e) => {
+    if (e && e.pointerId != null) this.pointers.delete(e.pointerId);
+    else this.pointers.clear();
+    if (this.pointers.size === 1) {
+      // pinch ended, hand control back to the remaining finger
+      this.pinch = null;
+      const p = this.pointerList()[0];
+      this.setState({ dragging: true, dragOrigin: { x: p.x - this.state.posX, y: p.y - this.state.posY } });
+    } else if (this.pointers.size === 0) {
+      this.pinch = null;
+      if (this.state.dragging) this.setState({ dragging: false });
+    } else if (this.pointers.size >= 2) {
+      this.startPinch();
+    }
+  };
   onZoomChange = (e) => this.setState({ zoom: Number(e.target.value) });
   onRotationChange = (e) => this.setState({ rotation: Number(e.target.value) });
   resetDesigner = () => this.setState({ rotation: 0, zoom: 1.0, posX: 0, posY: 0 });
@@ -656,6 +780,11 @@ class Component extends DCLogic {
     const featuredSource = (markedFeatured.length ? markedFeatured : activeProducts).slice(0, 4);
 
     const mapProductCard = (p) => {
+      const cp = this.productColorPrices();
+      const marcaRaw = (p.marca || "").toLowerCase();
+      const showTransparente =
+        marcaRaw === "iphone" || marcaRaw === "apple" ||
+        (marcaRaw === "todas" && (s.activeBrand === "Todas" || s.activeBrand === "iPhone"));
       const imageSource = p.imagen_raw || p.imagen_url || "";
       const fallbacks = mod.getDriveImageFallbacks ? mod.getDriveImageFallbacks(imageSource) : (imageSource ? [imageSource] : []);
       const fbIdx = s.imageFallbackIndex[p.nombre] || 0;
@@ -664,15 +793,21 @@ class Component extends DCLogic {
       return {
         nombre: p.nombre,
         marca: p.marca === "todas" ? "Todas las marcas" : p.marca,
-        precioFmt: this.formatPrice(p.precio),
+        precioFmt: this.formatPrice(cp.negro),
+        precioNegroFmt: this.formatPrice(cp.negro),
+        precioTransparenteFmt: this.formatPrice(cp.transparente),
+        showTransparente,
+        transparenteLabel: marcaRaw === "todas" ? "Color: Transparente (solo Apple)" : "Color: Transparente",
         hasImage,
         imagenUrl,
         onImageError: () => this.onProductImageError(p.nombre),
         showPlaceholderLabel: !hasImage,
         waLink: this.waLink(
-          p.marca === "todas"
-            ? 'Hola! Quiero pedir la funda "' + p.nombre + '" (' + this.formatPrice(p.precio) + ")."
-            : 'Hola! Quiero pedir la funda "' + p.nombre + '" para ' + p.marca + " (" + this.formatPrice(p.precio) + ")."
+          'Hola! Quiero pedir la funda "' + p.nombre + '"' +
+          (p.marca === "todas" ? "" : " para " + p.marca) +
+          (showTransparente
+            ? " (negra " + this.formatPrice(cp.negro) + " / transparente " + this.formatPrice(cp.transparente) + ")."
+            : " (negra " + this.formatPrice(cp.negro) + ").")
         ),
         imgWrapStyle: {
           overflow: "hidden",
@@ -752,8 +887,8 @@ class Component extends DCLogic {
     }));
 
     const effectiveColor = s.dBrand === "iPhone" ? s.dCaseColor : "negro";
-    const caseColorOptions = (s.dBrand === "iPhone" ? ["transparente", "negro"] : ["negro"]).map((col) => ({
-      label: col === "negro" ? "Negro" : "Transparente",
+    const caseColorOptions = (s.dBrand === "iPhone" ? ["negro", "transparente"] : ["negro"]).map((col) => ({
+      label: (col === "negro" ? "Negro" : "Transparente") + " · " + this.formatPrice(this.customPrice(col)),
       onSelect: () => this.setCaseColor(col),
       style: {
         display: "inline-flex",
@@ -886,8 +1021,12 @@ class Component extends DCLogic {
         cursor: s.dragging ? "grabbing" : "grab",
         touchAction: "none",
       },
+      designerPriceFmt: this.formatPrice(this.customPrice(effectiveColor)),
+      designerPriceNote:
+        (s.dBrand === "iPhone" ? "Funda " + (effectiveColor === "negro" ? "negra" : "transparente") : "Funda negra") +
+        (s.dModel ? " para " + s.dModel : ""),
       designerWaLink: this.waLink(
-        "Hola! Quiero pedir una funda personalizada para " + brandLabel(s.dBrand) + " " + s.dModel + (s.dBrand === "iPhone" ? " (funda " + (s.dCaseColor === "negro" ? "negra" : "transparente") + ")" : "") + ". Ya armé el diseño en la web con mi foto, te la mando por acá."
+        "Hola! Quiero pedir una funda personalizada para " + brandLabel(s.dBrand) + " " + s.dModel + (s.dBrand === "iPhone" ? " (funda " + (s.dCaseColor === "negro" ? "negra" : "transparente") + ")" : "") + " — " + this.formatPrice(this.customPrice(effectiveColor)) + ". Ya armé el diseño en la web con mi foto, te la mando por acá."
       ),
       designerCtaStyle: {
         textAlign: "center",

@@ -54,8 +54,11 @@ function splitCSVLine(line) {
   return out;
 }
 
-export function isProductActive(value) {
-  const v = String(value ?? "true").trim().toLowerCase();
+export function parseMoney(value) {
+  return Number(String(value ?? "").replace(/[^\d.]/g, "")) || 0;
+}
+
+export function isProductActive(value) {  const v = String(value ?? "true").trim().toLowerCase();
   return v !== "false" && v !== "0" && v !== "no";
 }
 
@@ -154,7 +157,9 @@ export async function fetchSheetProducts(csvUrl, retries = 3) {
             categoria,
             categorias: parseProductCategories(categoria),
             marca: (r.marca || "").trim().toLowerCase(),
-            precio: Number(String(r.precio).replace(/[^\d.]/g, "")) || 0,
+            precio: parseMoney(r.precio),
+            precio_negro: parseMoney(r.precio_negro ?? r.precio_negra ?? r["precio negro"] ?? r["precio negra"]),
+            precio_transparente: parseMoney(r.precio_transparente ?? r["precio transparente"]),
             imagen_url: normalizeImageUrl(imagenRaw),
             imagen_raw: imagenRaw,
             activo: r.activo || "true",
