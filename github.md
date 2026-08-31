@@ -2,7 +2,7 @@ repo: mallorkafundas/Mallorka
 branch: main
 
 ## Last sync
-date: 2026-08-31T22:45:00Z
+date: 2026-08-31T23:05:00Z
 
 ### Updated in this project
 - El pedido del diseñador ahora solo abre WhatsApp con el mensaje: el cliente adjunta la foto (sin descarga ni share de archivos)
@@ -13,6 +13,7 @@ date: 2026-08-31T22:45:00Z
 - Página de texto plano para Google en /info.html (precios, modelos, envíos, FAQ), enlazada desde el pie
 - Lista de modelos ampliada (84 modelos + "No encuentro mi modelo"): variantes Plus/Pro Max/Ultra y la gama media-baja que más se vende en Argentina
 - Lanzamientos 2026 sumados: iPhone Air, Galaxy S26/S26+/S26 Ultra, S25 FE, A17, Moto Edge 70, Edge 60 Pro, G67 y G47
+- Nueva sección "Nuestros trabajos" con 4 fotos de fundas entregadas (carrusel en mobile), entre el diseñador y las preguntas frecuentes
 
 ## Screen map
 | Pantalla | Archivos del repo |
