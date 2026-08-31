@@ -2,18 +2,19 @@ repo: mallorkafundas/Mallorka
 branch: main
 
 ## Last sync
-date: 2026-08-30T19:02:00Z
+date: 2026-08-31T21:44:18Z
 
 ### Updated in this project
-- Logo nuevo (PNG transparente 300×240) en header y footer, con alturas responsive
-- El diseñador genera el mockup con el encuadre elegido y lo adjunta al pedido de WhatsApp
-- Moldes nuevos de Samsung, Xiaomi, Motorola e iPhone negro, cada uno con su printmask
-- Limpieza: 27 imágenes sin usar y el código muerto del preview genérico
+- El pedido del diseñador ahora solo abre WhatsApp con el mensaje: el cliente adjunta la foto (sin descarga ni share de archivos)
+- Controles de zoom y giro rediseñados: barra compacta con botones −/+ y −90°/+90°, pegada al mockup
+- En mobile el diseñador ordena: elección de celular → vista previa con ajustes → precio y pedido
+- La web se sirve desde la raíz: index.html es ahora la app (antes redirigía a /Mallorka.dc.html)
 
 ## Screen map
 | Pantalla | Archivos del repo |
 | --- | --- |
-| Landing Mallorka (header, hero, catálogo, diseñador, FAQ, footer) | Mallorka.dc.html, catalog-data.js, uploads/ |
+| Landing Mallorka (header, hero, catálogo, diseñador, FAQ, footer) | Mallorka.dc.html, index.html (copia publicada), catalog-data.js, uploads/ |
 
 ## Sync history
+- 2026-08-30T19:02:00Z — logo nuevo, moldes nuevos, adjunto automático del mockup, limpieza de imágenes
 - 2026-08-30T18:28:00Z — primera importación del repo al proyecto

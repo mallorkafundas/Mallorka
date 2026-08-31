@@ -126,8 +126,10 @@
       .mk-hero-copy { max-width: none !important; }
       .mk-trust { padding: 28px 20px !important; gap: 14px !important; flex-direction: column; align-items: flex-start !important; }
       .mk-trust > div { border-left: none !important; padding: 0 !important; }
-      .mk-designer-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
-      .mk-designer-preview { position: static !important; }
+      .mk-designer-grid { display: flex !important; flex-direction: column; gap: 28px !important; }
+      .mk-designer-setup { order: 1; }
+      .mk-designer-preview { order: 2; position: static !important; }
+      .mk-designer-buy { order: 3; }
       .mk-footer { padding: 44px 20px !important; }
       .mk-footer-inner { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
       .mk-catalog-section { border-radius: 16px !important; }
@@ -339,8 +341,8 @@
     <h2 style="font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;margin:0 0 8px;">Diseñá tu funda</h2>
     <p style="color:oklch(72% 0.008 75);margin:0 0 36px;font-size:16px;max-width:600px;">Elegí tu celular, subí tu foto y ajustala con zoom y rotación hasta que encaje perfecto.</p>
 
-    <div class="mk-designer-grid" style="display:grid;grid-template-columns:1fr 320px;gap:56px;align-items:start;">
-      <div style="display:flex;flex-direction:column;gap:28px;">
+    <div class="mk-designer-grid" style="display:grid;grid-template-columns:1fr 320px;grid-template-areas:'setup preview' 'buy preview';column-gap:56px;row-gap:32px;align-items:start;">
+      <div class="mk-designer-setup" style="grid-area:setup;display:flex;flex-direction:column;gap:28px;">
         <div>
           <div style="font-weight:600;font-size:14px;margin-bottom:10px;">1. Marca</div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;">
@@ -384,21 +386,9 @@
           </sc-if>
         </div>
 
-        <sc-if value="{{ hasUploadedImage }}">
-          <div style="display:flex;flex-direction:column;gap:18px;max-width:280px;animation:mk-pop-in 0.3s ease;">
-            <div>
-              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:500;color:oklch(72% 0.008 75);margin-bottom:6px;"><span>Zoom</span><span style="font-variant-numeric:tabular-nums;">{{ zoomLabel }}</span></div>
-              <input type="range" min="0.5" max="3" step="0.05" value="{{ zoom }}" onChange="{{ onZoomChange }}" style="width:100%;">
-            </div>
-            <div>
-              <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:500;color:oklch(72% 0.008 75);margin-bottom:6px;"><span>Rotación</span><span style="font-variant-numeric:tabular-nums;">{{ rotationLabel }}</span></div>
-              <input type="range" min="-180" max="180" step="1" value="{{ rotation }}" onChange="{{ onRotationChange }}" style="width:100%;">
-            </div>
-            <p style="font-size:12px;color:oklch(62% 0.008 75);margin:0;">Tip: arrastrá la foto con un dedo para reacomodarla y pellizcá con dos dedos para hacer zoom.</p>
-            <button onClick="{{ resetDesigner }}" style="align-self:flex-start;background:oklch(20% 0.008 75);border:1px solid oklch(34% 0.008 75);color:oklch(92% 0.005 75);font-family:'Inter',sans-serif;padding:9px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">Reiniciar ajustes</button>
-          </div>
-        </sc-if>
+      </div>
 
+      <div class="mk-designer-buy" style="grid-area:buy;display:flex;flex-direction:column;gap:28px;">
         <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;max-width:320px;border-top:1px solid oklch(24% 0.008 75);padding-top:18px;">
           <div>
             <div style="font-size:12px;color:oklch(62% 0.008 75);text-transform:uppercase;letter-spacing:0.06em;font-weight:600;">Precio</div>
@@ -407,7 +397,7 @@
           <div style="font-family:'Poppins',sans-serif;font-size:28px;font-weight:700;color:oklch(64% 0.2 25);font-variant-numeric:tabular-nums;">{{ designerPriceFmt }}</div>
         </div>
         <button onClick="{{ onOrderDesign }}" class="mk-designer-cta" style="{{ designerCtaStyle }}">{{ designerCtaLabel }}</button>
-        <p style="font-size:12px;color:oklch(62% 0.008 75);max-width:320px;margin:-14px 0 0;">Preparamos tu diseño con el encuadre que elegiste y se abre WhatsApp con la imagen lista para enviar. Si tu celular no la adjunta solo, se descarga para que la mandes desde el chat.</p>
+        <p style="font-size:12px;color:oklch(62% 0.008 75);max-width:320px;margin:-14px 0 0;">Se abre WhatsApp con tu pedido escrito. Adjuntá ahí la foto y la encuadramos igual que en la vista previa.</p>
       </div>
 
       <div class="mk-designer-preview" style="position:sticky;top:100px;">
@@ -428,6 +418,30 @@
           <img src="./uploads/xiaomiV2.png" width="311" height="643" decoding="async" alt="Funda Xiaomi" style="{{ caseImgXiaomiStyle }}">
           <img src="./uploads/motorolaV3.png" width="311" height="643" decoding="async" alt="Funda Motorola" style="{{ caseImgMotorolaStyle }}">
         </div>
+        <sc-if value="{{ hasUploadedImage }}">
+          <div style="margin-top:14px;display:flex;flex-direction:column;gap:14px;background:oklch(16% 0.008 75);border:1px solid oklch(26% 0.008 75);border-radius:14px;padding:14px;animation:mk-pop-in 0.3s ease;">
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;"><span style="font-size:12px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:oklch(66% 0.008 75);">Zoom</span><span style="font-size:13px;font-variant-numeric:tabular-nums;color:oklch(88% 0.005 75);">{{ zoomLabel }}</span></div>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <button onClick="{{ zoomOut }}" aria-label="Alejar la foto" style="flex:0 0 auto;min-width:44px;height:44px;padding:0 10px;border-radius:10px;border:1px solid oklch(32% 0.008 75);background:oklch(22% 0.008 75);color:oklch(94% 0.005 75);font-family:'Inter',sans-serif;font-size:15px;font-weight:600;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;">&#8722;</button>
+                <input type="range" min="0.5" max="3" step="0.05" value="{{ zoom }}" onChange="{{ onZoomChange }}" aria-label="Zoom" style="flex:1;min-width:0;">
+                <button onClick="{{ zoomIn }}" aria-label="Acercar la foto" style="flex:0 0 auto;min-width:44px;height:44px;padding:0 10px;border-radius:10px;border:1px solid oklch(32% 0.008 75);background:oklch(22% 0.008 75);color:oklch(94% 0.005 75);font-family:'Inter',sans-serif;font-size:15px;font-weight:600;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;">+</button>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;"><span style="font-size:12px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:oklch(66% 0.008 75);">Girar</span><span style="font-size:13px;font-variant-numeric:tabular-nums;color:oklch(88% 0.005 75);">{{ rotationLabel }}</span></div>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <button onClick="{{ rotateLeft }}" aria-label="Girar 90 grados a la izquierda" style="flex:0 0 auto;min-width:44px;height:44px;padding:0 10px;border-radius:10px;border:1px solid oklch(32% 0.008 75);background:oklch(22% 0.008 75);color:oklch(94% 0.005 75);font-family:'Inter',sans-serif;font-size:15px;font-weight:600;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;">&#8722;90&#176;</button>
+                <input type="range" min="-180" max="180" step="1" value="{{ rotation }}" onChange="{{ onRotationChange }}" aria-label="Rotación" style="flex:1;min-width:0;">
+                <button onClick="{{ rotateRight }}" aria-label="Girar 90 grados a la derecha" style="flex:0 0 auto;min-width:44px;height:44px;padding:0 10px;border-radius:10px;border:1px solid oklch(32% 0.008 75);background:oklch(22% 0.008 75);color:oklch(94% 0.005 75);font-family:'Inter',sans-serif;font-size:15px;font-weight:600;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;">+90&#176;</button>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid oklch(24% 0.008 75);padding-top:10px;">
+              <span style="font-size:12px;color:oklch(62% 0.008 75);">Arrastrá la foto con un dedo · pellizcá para hacer zoom</span>
+              <button onClick="{{ resetDesigner }}" style="background:none;border:none;padding:6px 0;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;color:oklch(74% 0.09 25);cursor:pointer;text-decoration:underline;">Reiniciar</button>
+            </div>
+          </div>
+        </sc-if>
         <p style="text-align:center;font-size:12px;color:oklch(62% 0.008 75);margin-top:12px;">{{ dBrand }} {{ dModel }}</p>
       </div>
     </div>
@@ -515,7 +529,6 @@ class Component extends DCLogic {
     imageFallbackIndex: {},
     faqOpen: null,
     mobileMenuOpen: false,
-    preparing: false,
     dBrand: "iPhone",
     dCaseColor: "transparente",
     customPrices: { negro: 18000, transparente: 21000 },
@@ -918,118 +931,10 @@ class Component extends DCLogic {
     });
   }
 
-  // Rehace en canvas el mismo encuadre que el usuario ve en el preview
-  // (mismo orden de transformaciones que imageStyle) y lo recorta con el
-  // printmask del modelo, para que la imprenta reciba el arte listo.
-  async buildDesignBlob() {
-    const s = this.state;
-    if (!s.uploadedImage) return null;
-    const MASKS = {
-      iPhone: s.dCaseColor === "negro" ? "./uploads/iphoneNegroV2-printmask.png" : "./uploads/iphone-printmask.png",
-      Samsung: "./uploads/samsungV2-printmask.png",
-      Xiaomi: "./uploads/xiaomiV2-printmask.png",
-      Motorola: "./uploads/motorolaV3-printmask.png",
-    };
-    const W = 933;
-    const H = 1929;
-    const k = W / 230; // el preview en pantalla mide 230px de ancho
-    const canvas = document.createElement("canvas");
-    canvas.width = W;
-    canvas.height = H;
-    const ctx = canvas.getContext("2d");
-    ctx.fillStyle = "#fff";
-    ctx.fillRect(0, 0, W, H);
-    const img = await this.loadImage(s.uploadedImage);
-    const iw = img.naturalWidth || img.width;
-    const ih = img.naturalHeight || img.height;
-    const fit = Math.min(W / iw, H / ih); // background-size: contain
-    const dw = iw * fit;
-    const dh = ih * fit;
-    ctx.save();
-    ctx.translate(W / 2 + s.posX * k, H / 2 + s.posY * k);
-    ctx.rotate((s.rotation * Math.PI) / 180);
-    ctx.scale(s.zoom, s.zoom);
-    ctx.drawImage(img, -dw / 2, -dh / 2, dw, dh);
-    ctx.restore();
-    const maskSrc = MASKS[s.dBrand];
-    if (maskSrc) {
-      try {
-        const mask = await this.loadImage(maskSrc);
-        ctx.globalCompositeOperation = "destination-in";
-        ctx.drawImage(mask, 0, 0, W, H);
-        ctx.globalCompositeOperation = "source-over";
-      } catch (_) {}
-    }
-    // La funda va encima, igual que en el preview: así se ven los agujeros de
-    // las cámaras y el pedido muestra cómo queda de verdad.
-    const CASE_IMG = {
-      iPhone: s.dCaseColor === "negro" ? "./uploads/iphoneNegroV2.png" : "./uploads/IphoneV1.png",
-      Samsung: "./uploads/samsungV2.png",
-      Xiaomi: "./uploads/xiaomiV2.png",
-      Motorola: "./uploads/motorolaV3.png",
-    };
-    const caseSrc = CASE_IMG[s.dBrand];
-    if (caseSrc) {
-      try {
-        const shell = await this.loadImage(caseSrc);
-        ctx.drawImage(shell, 0, 0, W, H);
-      } catch (_) {}
-    }
-    return new Promise((res) => canvas.toBlob(res, "image/png"));
-  }
-
-  designerWaMessage() {
-    const s = this.state;
-    const brand = s.dBrand === "iPhone" ? "Apple" : s.dBrand;
-    const color = s.dBrand === "iPhone" ? " (funda " + (s.dCaseColor === "negro" ? "negra" : "transparente") + ")" : "";
-    const effective = s.dBrand === "iPhone" ? s.dCaseColor : "negro";
-    return (
-      "Hola! Quiero pedir una funda personalizada para " + brand + " " + s.dModel + color +
-      " — " + this.formatPrice(this.customPrice(effective)) + ". Te adjunto el diseño que armé en la web."
-    );
-  }
-
-  designFileName() {
-    const raw = "mallorka-" + (this.state.dModel || this.state.dBrand);
-    return raw.replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "").toLowerCase() + ".png";
-  }
-
-  onOrderDesign = async (e) => {
+  onOrderDesign = (e) => {
     if (e) e.preventDefault();
-    const s = this.state;
-    if (!s.uploadedImage || s.preparing) return;
+    if (!this.state.uploadedImage) return;
     const link = this.waLink(this.designerWaMessage());
-    const name = this.designFileName();
-    this.setState({ preparing: true });
-    let blob = null;
-    try {
-      blob = await this.buildDesignBlob();
-    } catch (err) {
-      console.warn("No se pudo generar el diseño.", err);
-    }
-    this.setState({ preparing: false });
-
-    if (blob) {
-      const file = new File([blob], name, { type: "image/png" });
-      // En celular, WhatsApp aparece en el menú de compartir con la foto ya adjunta.
-      if (navigator.canShare && navigator.canShare({ files: [file] })) {
-        try {
-          await navigator.share({ files: [file], text: this.designerWaMessage() });
-          return;
-        } catch (err) {
-          if (err && err.name === "AbortError") return;
-        }
-      }
-      // Desktop: se descarga el arte y se abre el chat para adjuntarlo.
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = name;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      setTimeout(() => URL.revokeObjectURL(url), 5000);
-    }
     const win = window.open(link, "_blank", "noopener");
     if (!win) window.location.href = link;
   };
@@ -1037,6 +942,15 @@ class Component extends DCLogic {
   onZoomChange = (e) => this.setState({ zoom: Number(e.target.value) });
   onRotationChange = (e) => this.setState({ rotation: Number(e.target.value) });
   resetDesigner = () => this.setState({ rotation: 0, zoom: 1.0, posX: 0, posY: 0 });
+  stepZoom = (d) => this.setState((s) => ({ zoom: Math.round(Math.min(3, Math.max(0.5, s.zoom + d)) * 100) / 100 }));
+  zoomIn = () => this.stepZoom(0.1);
+  zoomOut = () => this.stepZoom(-0.1);
+  stepRotation = (d) => this.setState((s) => {
+    const r = Math.round(s.rotation / 90) * 90 + d;
+    return { rotation: ((((r + 180) % 360) + 360) % 360) - 180 };
+  });
+  rotateLeft = () => this.stepRotation(-90);
+  rotateRight = () => this.stepRotation(90);
 
   renderVals() {
     const s = this.state;
@@ -1269,6 +1183,10 @@ class Component extends DCLogic {
       zoomLabel: Math.round(s.zoom * 100) + "%",
       rotationLabel: s.rotation + "°",
       onZoomChange: this.onZoomChange,
+      zoomIn: this.zoomIn,
+      zoomOut: this.zoomOut,
+      rotateLeft: this.rotateLeft,
+      rotateRight: this.rotateRight,
       onRotationChange: this.onRotationChange,
       resetDesigner: this.resetDesigner,
       designRestored: s.designRestored,
@@ -1296,11 +1214,7 @@ class Component extends DCLogic {
         (s.dBrand === "iPhone" ? "Funda " + (effectiveColor === "negro" ? "negra" : "transparente") : "Funda negra") +
         (s.dModel ? " para " + s.dModel : ""),
       onOrderDesign: this.onOrderDesign,
-      designerCtaLabel: s.preparing
-        ? "Preparando tu diseño…"
-        : hasUploadedImage
-        ? "Pedir esta funda por WhatsApp"
-        : "Subí tu foto para pedir",
+      designerCtaLabel: hasUploadedImage ? "Pedir esta funda por WhatsApp" : "Subí tu foto para pedir",
       designerCtaStyle: {
         textAlign: "center",
         background: hasUploadedImage ? coralDeep : "oklch(28% 0.008 75)",
@@ -1312,8 +1226,7 @@ class Component extends DCLogic {
         fontFamily: "Inter, sans-serif",
         border: "none",
         cursor: hasUploadedImage ? "pointer" : "default",
-        opacity: s.preparing ? 0.7 : 1,
-        pointerEvents: hasUploadedImage && !s.preparing ? "auto" : "none",
+        pointerEvents: hasUploadedImage ? "auto" : "none",
       },
       faqs,
       mobileMenuOpen: s.mobileMenuOpen,
