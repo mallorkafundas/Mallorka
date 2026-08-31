@@ -5,10 +5,10 @@ const CATALOG_CACHE_KEY = "mallorka_catalog_v1";
 
 
 export const PHONE_MODELS = {
-  iPhone: ["iPhone 11", "iPhone 12", "iPhone 12 Pro", "iPhone 13", "iPhone 13 Pro", "iPhone 14", "iPhone 14 Pro", "iPhone 15", "iPhone 15 Pro", "iPhone 16", "iPhone 16 Pro", "iPhone 17"],
-  Samsung: ["Galaxy S21", "Galaxy S22", "Galaxy S23", "Galaxy S24", "Galaxy S25", "Galaxy A34", "Galaxy A54", "Galaxy A55"],
-  Motorola: ["Moto G30", "Moto G60", "Moto G84", "Moto Edge 30", "Moto Edge 40", "Moto Edge 50"],
-  Xiaomi: ["Redmi Note 11", "Redmi Note 12", "Redmi Note 13", "Xiaomi 12", "Xiaomi 13", "Xiaomi 14", "POCO X5"],
+  iPhone: ["iPhone Air", "iPhone 17 Pro Max", "iPhone 17 Pro", "iPhone 17", "iPhone 17e", "iPhone 16 Pro Max", "iPhone 16 Pro", "iPhone 16 Plus", "iPhone 16", "iPhone 16e", "iPhone 15 Pro Max", "iPhone 15 Pro", "iPhone 15 Plus", "iPhone 15", "iPhone 14 Pro Max", "iPhone 14 Pro", "iPhone 14 Plus", "iPhone 14", "iPhone 13 Pro Max", "iPhone 13 Pro", "iPhone 13", "iPhone 13 mini", "iPhone 12 Pro Max", "iPhone 12 Pro", "iPhone 12", "iPhone 12 mini", "iPhone 11 Pro Max", "iPhone 11 Pro", "iPhone 11", "iPhone XR", "iPhone SE (2020/2022)", "No encuentro mi modelo"],
+  Samsung: ["Galaxy S26 Ultra", "Galaxy S26+", "Galaxy S26", "Galaxy S25 Ultra", "Galaxy S25", "Galaxy S25 FE", "Galaxy S24 Ultra", "Galaxy S24 FE", "Galaxy S24", "Galaxy S23 Ultra", "Galaxy S23", "Galaxy S22 Ultra", "Galaxy S22", "Galaxy S21 Ultra", "Galaxy S21", "Galaxy A56", "Galaxy A55", "Galaxy A54", "Galaxy A35", "Galaxy A34", "Galaxy A25", "Galaxy A17", "Galaxy A16", "Galaxy A15", "Galaxy A07", "Galaxy A06", "Galaxy A05", "No encuentro mi modelo"],
+  Motorola: ["Moto Edge 70", "Moto Edge 60 Pro", "Moto Edge 60 Fusion", "Moto Edge 50", "Moto Edge 40", "Moto Edge 30", "Moto G67", "Moto G47", "Moto G17", "Moto G15 SE", "Moto G15", "Moto G14", "Moto G06", "Moto G85", "Moto G84", "Moto G54", "Moto G30", "Moto G24", "Moto G60", "Moto E15", "No encuentro mi modelo"],
+  Xiaomi: ["Xiaomi 15", "Xiaomi 14", "Xiaomi 14C", "Xiaomi 13", "Xiaomi 12", "Redmi Note 15 Pro", "Redmi Note 15", "Redmi Note 14", "Redmi Note 13", "Redmi Note 12", "Redmi Note 11", "Redmi 15C", "Redmi 14C", "Redmi 13C", "POCO X7", "POCO X6", "POCO X5", "No encuentro mi modelo"],
 };
 
 export const FAQS = [

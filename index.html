@@ -397,7 +397,10 @@
           <div style="font-family:'Poppins',sans-serif;font-size:28px;font-weight:700;color:oklch(64% 0.2 25);font-variant-numeric:tabular-nums;">{{ designerPriceFmt }}</div>
         </div>
         <a href="{{ designerWaLink }}" target="_blank" rel="noopener noreferrer" class="mk-designer-cta" style="display:block;text-align:center;background:oklch(64% 0.2 25);color:#fff;padding:16px;border-radius:10px;font-weight:600;font-size:15px;">Pedir esta funda por WhatsApp</a>
-        <p style="font-size:12px;color:oklch(62% 0.008 75);max-width:320px;margin:-14px 0 0;">Se abre WhatsApp con tu pedido escrito. Adjuntá ahí la foto y la encuadramos igual que en la vista previa.</p>
+        <sc-if value="{{ hasUploadedImage }}">
+          <button onClick="{{ onDownloadDesign }}" style="{{ downloadStyle }}">{{ downloadLabel }}</button>
+        </sc-if>
+        <p style="font-size:12px;color:oklch(62% 0.008 75);max-width:320px;margin:-14px 0 0;">Se abre WhatsApp con tu pedido escrito. Adjuntá ahí tu foto, o descargá la funda con el encuadre que armaste y mandanos esa imagen.</p>
       </div>
 
       <div class="mk-designer-preview" style="grid-area:preview;position:sticky;top:100px;">
@@ -442,7 +445,7 @@
             </div>
           </div>
         </sc-if>
-        <p style="text-align:center;font-size:12px;color:oklch(62% 0.008 75);margin-top:12px;">{{ dBrand }} {{ dModel }}</p>
+        <p style="text-align:center;font-size:12px;color:oklch(62% 0.008 75);margin-top:12px;">{{ previewCaption }}</p>
       </div>
     </div>
   </section>
@@ -485,6 +488,7 @@
         <a href="#catalogo" style="display:inline-flex;align-items:center;min-height:40px;font-size:14px;color:oklch(80% 0.005 75);">Catálogo</a>
         <a href="#disenador" style="display:inline-flex;align-items:center;min-height:40px;font-size:14px;color:oklch(80% 0.005 75);">Diseñá tu funda</a>
         <a href="#faq" style="display:inline-flex;align-items:center;min-height:40px;font-size:14px;color:oklch(80% 0.005 75);">Preguntas frecuentes</a>
+        <a href="./info.html" style="display:inline-flex;align-items:center;min-height:40px;font-size:14px;color:oklch(80% 0.005 75);">Precios, modelos y envíos</a>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:10px;">
@@ -541,6 +545,7 @@ class Component extends DCLogic {
     dragging: false,
     dragOrigin: { x: 0, y: 0 },
     designRestored: false,
+    downloading: false,
   };
 
   getSheetUrl(mod) {
@@ -581,7 +586,7 @@ class Component extends DCLogic {
     this.setState({
       faqData: mod.FAQS,
       phoneModels: mod.PHONE_MODELS,
-      dModel: (mod.PHONE_MODELS.iPhone && mod.PHONE_MODELS.iPhone[3]) || "",
+      dModel: (mod.PHONE_MODELS.iPhone && (mod.PHONE_MODELS.iPhone.indexOf("iPhone 16") >= 0 ? "iPhone 16" : mod.PHONE_MODELS.iPhone[0])) || "",
     });
     this.restoreDesign();
     await this.loadProducts(mod);
@@ -931,17 +936,97 @@ class Component extends DCLogic {
     });
   }
 
+  // Rehace en canvas el mismo encuadre que ve el usuario (mismo orden de
+  // transformaciones que imageStyle), lo recorta con el printmask del modelo y
+  // le superpone la funda, para que el cliente se descargue el mockup.
+  async buildDesignBlob() {
+    const s = this.state;
+    if (!s.uploadedImage) return null;
+    const ASSETS = {
+      iPhone: s.dCaseColor === "negro"
+        ? { mask: "./uploads/iphoneNegroV2-printmask.png", shell: "./uploads/iphoneNegroV2.png" }
+        : { mask: "./uploads/iphone-printmask.png", shell: "./uploads/IphoneV1.png" },
+      Samsung: { mask: "./uploads/samsungV2-printmask.png", shell: "./uploads/samsungV2.png" },
+      Xiaomi: { mask: "./uploads/xiaomiV2-printmask.png", shell: "./uploads/xiaomiV2.png" },
+      Motorola: { mask: "./uploads/motorolaV3-printmask.png", shell: "./uploads/motorolaV3.png" },
+    };
+    const asset = ASSETS[s.dBrand] || ASSETS.iPhone;
+    const W = 933;
+    const H = 1931;
+    const k = W / 230; // el preview mide 230px de ancho
+    const c = document.createElement("canvas");
+    c.width = W;
+    c.height = H;
+    const ctx = c.getContext("2d");
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(0, 0, W, H);
+    const img = await this.loadImage(s.uploadedImage);
+    const iw = img.naturalWidth || img.width;
+    const ih = img.naturalHeight || img.height;
+    const fit = Math.min(W / iw, H / ih); // equivale a background-size: contain
+    const dw = iw * fit;
+    const dh = ih * fit;
+    ctx.save();
+    ctx.translate(W / 2 + s.posX * k, H / 2 + s.posY * k);
+    ctx.rotate((s.rotation * Math.PI) / 180);
+    ctx.scale(s.zoom, s.zoom);
+    ctx.drawImage(img, -dw / 2, -dh / 2, dw, dh);
+    ctx.restore();
+    try {
+      const mask = await this.loadImage(asset.mask);
+      ctx.globalCompositeOperation = "destination-in";
+      ctx.drawImage(mask, 0, 0, W, H);
+      ctx.globalCompositeOperation = "source-over";
+    } catch (_) {}
+    try {
+      const shell = await this.loadImage(asset.shell);
+      ctx.drawImage(shell, 0, 0, W, H);
+    } catch (_) {}
+    return await new Promise((res) => c.toBlob(res, "image/png"));
+  }
+
+  designFileName() {
+    const raw = "mallorka-" + (this.state.dModel || this.state.dBrand);
+    return raw.replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "").toLowerCase() + ".png";
+  }
+
+  onDownloadDesign = async (e) => {
+    if (e) e.preventDefault();
+    if (!this.state.uploadedImage || this.state.downloading) return;
+    this.setState({ downloading: true });
+    let blob = null;
+    try {
+      blob = await this.buildDesignBlob();
+    } catch (err) {
+      console.warn("No se pudo generar el encuadre.", err);
+    }
+    this.setState({ downloading: false });
+    if (!blob) return;
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = this.designFileName();
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
+  };
+
   designerWaMessage() {
     const s = this.state;
     const brand = s.dBrand || "mi celular";
     const effective = s.dBrand === "iPhone" ? s.dCaseColor : "negro";
     const color = effective === "negro" ? " negra" : " transparente";
-    const device = s.dModel
+    const unknown = /^No encuentro/i.test(s.dModel || "");
+    const device = unknown
+      ? "un " + brand
+      : s.dModel
       ? (s.dModel.toLowerCase().indexOf(String(s.dBrand).toLowerCase()) === 0 ? s.dModel : brand + " " + s.dModel)
       : brand;
     return (
       "Hola! Quiero pedir una funda personalizada" + color + " para " + device +
-      " — " + this.formatPrice(this.customPrice(effective)) + ". Te mando la foto por acá."
+      " — " + this.formatPrice(this.customPrice(effective)) +
+      (unknown ? ". Te paso el modelo exacto y la foto por acá." : ". Te mando la foto por acá.")
     );
   }
 
@@ -1120,6 +1205,7 @@ class Component extends DCLogic {
     }));
 
     const hasUploadedImage = !!s.uploadedImage;
+    const unknownModel = /^No encuentro/i.test(s.dModel || "");
     const CASES = {
       Samsung: { img: "./uploads/samsungV2.png", mask: "./uploads/samsungV2-printmask.png" },
       iPhone: {
@@ -1216,10 +1302,32 @@ class Component extends DCLogic {
         touchAction: "none",
       },
       designerPriceFmt: this.formatPrice(this.customPrice(effectiveColor)),
+      previewCaption: unknownModel
+        ? s.dBrand + " · modelo a confirmar"
+        : s.dModel
+        ? (s.dModel.toLowerCase().indexOf(String(s.dBrand).toLowerCase()) === 0 ? s.dModel : (s.dBrand + " " + s.dModel).trim())
+        : s.dBrand,
       designerPriceNote:
         (s.dBrand === "iPhone" ? "Funda " + (effectiveColor === "negro" ? "negra" : "transparente") : "Funda negra") +
-        (s.dModel ? " para " + s.dModel : ""),
+        (unknownModel ? " — modelo a confirmar" : s.dModel ? " para " + s.dModel : ""),
       designerWaLink: this.waLink(this.designerWaMessage()),
+      onDownloadDesign: this.onDownloadDesign,
+      downloadLabel: s.downloading ? "Generando tu funda…" : "Descargar mi funda",
+      downloadStyle: {
+        display: "block",
+        width: "100%",
+        textAlign: "center",
+        background: "oklch(20% 0.008 75)",
+        border: "1px solid oklch(34% 0.008 75)",
+        color: "oklch(92% 0.005 75)",
+        padding: "14px",
+        borderRadius: "10px",
+        fontWeight: 600,
+        fontSize: "14px",
+        fontFamily: "Inter, sans-serif",
+        cursor: "pointer",
+        opacity: s.downloading ? 0.7 : 1,
+      },
       faqs,
       mobileMenuOpen: s.mobileMenuOpen,
       toggleMobileMenu: this.toggleMobileMenu,
