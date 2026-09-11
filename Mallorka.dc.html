@@ -95,9 +95,6 @@
     *, *::before, *::after { box-sizing: border-box; }
     img { max-width: 100%; height: auto; }
     .mk-ship-badge { max-width: 100%; box-sizing: border-box; }
-    .mk-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 0 0 36px; }
-    .mk-step { padding: 18px 16px; border-radius: 14px; border: 1px solid oklch(24% 0.008 75); background: oklch(16% 0.008 75); }
-    .mk-step-n { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(64% 0.2 25); margin-bottom: 8px; }
     .mk-inspire { display: block; text-align: center; margin: 40px auto 0; padding: 16px 20px; border-radius: 14px; border: 1px dashed oklch(32% 0.04 25); background: oklch(15% 0.01 25); color: oklch(88% 0.02 25); font-weight: 600; font-size: 15px; }
     .mk-cat-swipe, .mk-catalog-swipe { display: flex; gap: 14px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scroll-padding-inline: 16px; padding: 4px 4px 14px; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; touch-action: pan-x; scrollbar-width: thin; }
     .mk-cat-swipe::-webkit-scrollbar, .mk-catalog-swipe::-webkit-scrollbar { height: 4px; }
@@ -132,7 +129,6 @@
       .mk-catalog-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
       .mk-cat-card { flex: 0 0 200px; max-width: none; }
     }
-    .mk-catalog-filters { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 28px; align-items: flex-start; }
     .mk-model-select { width: 100%; max-width: 320px; box-sizing: border-box; }
     .mk-designer-cta { box-sizing: border-box; }
     @media (max-width: 900px) {
@@ -168,9 +164,7 @@
       .mk-hero-copy p { font-size: 16px !important; margin-bottom: 24px !important; }
       .mk-hero-actions { flex-direction: column; }
       .mk-hero-actions a { width: 100%; text-align: center; padding: 14px 20px !important; }
-      .mk-steps { grid-template-columns: 1fr; gap: 10px; }
       .mk-catalog-section { border-radius: 0 !important; padding-left: 16px !important; padding-right: 16px !important; }
-      .mk-catalog-filters { flex-direction: column; gap: 16px !important; }
       .mk-model-select { max-width: none !important; }
       .mk-designer-cta { width: 100% !important; display: block !important; }
       .mk-trust { padding: 24px 16px !important; }
@@ -249,12 +243,7 @@
   <!-- DISEÑADOR -->
   <section id="disenador" class="mk-section" style="padding:80px 40px;max-width:1280px;margin:0 auto;">
     <h2 style="font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;margin:0 0 8px;">Diseñá tu funda</h2>
-    <p style="color:oklch(72% 0.008 75);margin:0 0 24px;font-size:16px;max-width:600px;">Elegí tu celular, subí tu foto y ajustala con zoom y rotación hasta que encaje perfecto.</p>
-    <div class="mk-steps" aria-label="Pasos para personalizar">
-      <div class="mk-step"><div class="mk-step-n">Paso 1</div><div style="font-weight:600;font-size:15px;margin-bottom:4px;">Elegí el modelo</div><div style="font-size:13px;line-height:1.45;color:oklch(72% 0.008 75);">Marca y modelo de tu celular.</div></div>
-      <div class="mk-step"><div class="mk-step-n">Paso 2</div><div style="font-weight:600;font-size:15px;margin-bottom:4px;">Subí tu foto</div><div style="font-size:13px;line-height:1.45;color:oklch(72% 0.008 75);">Ajustá zoom y encuadre sobre la funda.</div></div>
-      <div class="mk-step"><div class="mk-step-n">Paso 3</div><div style="font-weight:600;font-size:15px;margin-bottom:4px;">Pedila por WhatsApp</div><div style="font-size:13px;line-height:1.45;color:oklch(72% 0.008 75);">Te confirmamos el pedido y el envío.</div></div>
-    </div>
+    <p style="color:oklch(72% 0.008 75);margin:0 0 36px;font-size:16px;max-width:600px;">Elegí tu celular, subí tu foto y ajustala con zoom y rotación hasta que encaje perfecto.</p>
 
     <div class="mk-designer-grid" style="display:grid;grid-template-columns:1fr 320px;grid-template-areas:'setup preview' 'buy preview';column-gap:56px;row-gap:32px;align-items:start;">
       <div class="mk-designer-setup" style="grid-area:setup;display:flex;flex-direction:column;gap:28px;">
@@ -370,7 +359,7 @@
   <!-- CATALOGO -->
   <section id="catalogo" class="mk-section mk-catalog-section" style="padding:80px 40px;max-width:1280px;margin:0 auto;background:oklch(15% 0.008 75);border-radius:24px;">
     <h2 style="font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;margin:0 0 8px;">Catálogo</h2>
-    <p style="color:oklch(72% 0.008 75);margin:0 0 20px;font-size:16px;">Buscá por nombre o tocá una colección. Los diseños se ven hacia abajo.</p>
+    <p style="color:oklch(72% 0.008 75);margin:0 0 20px;font-size:16px;max-width:640px;">Los diseños sirven para cualquier celular: iPhone, Samsung, Motorola y Xiaomi. Nosotros adaptamos la funda a tu modelo.</p>
 
     <sc-if value="{{ loading }}" hint-placeholder-val="{{ true }}">
       <p style="color:oklch(72% 0.008 75);font-size:15px;">Cargando catálogo…</p>
@@ -415,19 +404,7 @@
 
     <sc-if value="{{ showCatalogProducts }}">
       <div id="catalogo-productos" style="margin-top:28px;">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px;">
-          <h3 style="font-family:'Poppins',sans-serif;font-size:22px;font-weight:700;margin:0;">{{ activeCategoryLabel }}</h3>
-          <sc-if value="{{ showCloseCategory }}">
-            <button type="button" onClick="{{ closeCategory }}" style="min-height:44px;padding:10px 14px;border-radius:8px;border:1px solid oklch(31% 0.008 75);background:oklch(18% 0.008 75);color:oklch(94% 0.005 75);font-weight:600;font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;">Volver a colecciones</button>
-          </sc-if>
-        </div>
-        <div class="mk-catalog-filters">
-          <select onChange="{{ onBrandFilterChange }}" aria-label="Marca" style="padding:12px 14px;border-radius:8px;border:1px solid oklch(31% 0.008 75);font-size:14px;font-family:'Inter',sans-serif;background:oklch(18% 0.008 75);color:oklch(94% 0.005 75);width:100%;max-width:220px;box-sizing:border-box;">
-            <sc-for list="{{ brandFilters }}" as="b" hint-placeholder-count="4">
-              <option value="{{ b.value }}">{{ b.label }}</option>
-            </sc-for>
-          </select>
-        </div>
+        <h3 style="font-family:'Poppins',sans-serif;font-size:22px;font-weight:700;margin:0 0 18px;">{{ activeCategoryLabel }}</h3>
         <sc-if value="{{ showEmptyState }}">
           <p style="color:oklch(72% 0.008 75);font-size:15px;">No hay diseños que coincidan con ese filtro.</p>
         </sc-if>
@@ -455,6 +432,9 @@
             </div>
           </sc-for>
         </div>
+        <sc-if value="{{ showCloseCategory }}">
+          <button type="button" onClick="{{ closeCategory }}" style="display:block;width:100%;max-width:360px;margin:24px auto 0;min-height:48px;padding:12px 16px;border-radius:10px;border:1px solid oklch(31% 0.008 75);background:oklch(18% 0.008 75);color:oklch(94% 0.005 75);font-weight:600;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Volver a colecciones</button>
+        </sc-if>
       </div>
     </sc-if>
   </section>
@@ -733,7 +713,13 @@ class Component extends DCLogic {
   }
 
   setCategory = (cat) => this.setState({ activeCategory: cat });
-  closeCategory = () => this.setState({ activeCategory: "", activeBrand: "Todas" });
+  closeCategory = () => {
+    this.setState({ activeCategory: "", activeBrand: "Todas" });
+    requestAnimationFrame(() => {
+      const el = document.getElementById("catalogo");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  };
   openCategory = (cat) => {
     this.setState({ activeCategory: cat });
     requestAnimationFrame(() => {
@@ -742,7 +728,6 @@ class Component extends DCLogic {
     });
   };
   onCatalogQueryChange = (e) => this.setState({ catalogQuery: e.target.value });
-  onBrandFilterChange = (e) => this.setState({ activeBrand: e.target.value });
   toggleFaq = (i) => this.setState((s) => ({ faqOpen: s.faqOpen === i ? null : i }));
   toggleMobileMenu = () => this.setState((s) => ({ mobileMenuOpen: !s.mobileMenuOpen }));
   closeMobileMenu = () => this.setState({ mobileMenuOpen: false });
@@ -1109,7 +1094,6 @@ class Component extends DCLogic {
     };
     const filteredProducts = s.products.filter((p) => {
       if (!mod.isProductActive(p.activo)) return false;
-      if (!this.productMatchesBrand(p, s.activeBrand)) return false;
       if (hasActiveCategory) {
         return this.productMatchesCategory(p, s.activeCategory, mod) && (!catalogQuery || productMatchesSearch(p));
       }
@@ -1169,7 +1153,6 @@ class Component extends DCLogic {
       };
     };
 
-    const distinctBrands = ["Todas", "iPhone", "Samsung", "Motorola", "Xiaomi"];
     const categoryCards = visibleCategories.map((cat) => {
       const source = cat.coverRaw || cat.coverUrl || "";
       const fallbacks = mod.getDriveImageFallbacks ? mod.getDriveImageFallbacks(source) : (source ? [source] : []);
@@ -1293,8 +1276,6 @@ class Component extends DCLogic {
       activeCategoryLabel: hasActiveCategory ? s.activeCategory : "Resultados",
       showCloseCategory: hasActiveCategory,
       closeCategory: this.closeCategory,
-      brandFilters: distinctBrands.map((b) => ({ value: b, label: brandLabel(b) })),
-      onBrandFilterChange: this.onBrandFilterChange,
       brandOptions,
       modelOptions: (s.phoneModels && s.phoneModels[s.dBrand]) || [],
       dModel: s.dModel,
