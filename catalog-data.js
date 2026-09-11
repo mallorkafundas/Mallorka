@@ -132,11 +132,19 @@ export function loadCachedProducts() {
 }
 
 export function deriveCategoriesFromProducts(products) {
-  const names = new Set();
+  const map = new Map();
   for (const p of products) {
-    for (const c of p.categorias || parseProductCategories(p.categoria)) names.add(c);
+    for (const c of p.categorias || parseProductCategories(p.categoria)) {
+      if (!map.has(c)) map.set(c, { name: c, count: 0, coverUrl: "", coverRaw: "" });
+      const rec = map.get(c);
+      rec.count += 1;
+      if (!rec.coverUrl && (p.imagen_url || p.imagen_raw)) {
+        rec.coverUrl = p.imagen_url || "";
+        rec.coverRaw = p.imagen_raw || p.imagen_url || "";
+      }
+    }
   }
-  return [...names].sort().map((name, i) => ({ name, hue: i % 2 === 0 ? 25 : 190 }));
+  return [...map.values()].sort((a, b) => a.name.localeCompare(b.name, "es"));
 }
 
 export async function fetchSheetProducts(csvUrl, retries = 3) {
